@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟DOM</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{name.firstName}}</p>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <script>
+        /**
+         * 为什么使用虚拟DOM？ 提高性能 多次操作DOM会降低浏览器性能  虚拟DOM都在内存中操作
+         * 目标： 需要准备两种算法
+         * 1. 怎么将真正的DOM转换成虚拟DOM
+         * 2. 怎么将虚拟DOM转化为正真DOM
+         * 思路  与深拷贝类似
+         * <div /> 转换为=> {tag: 'div'} 也可以转换为文本节点 => {tag: undefined, value: '文本节点'}
+         * 还可能有 <div title="" /> => {tag: 'div', data: {title: ''}}
+         * 如果有子节点 => {tag: 'div', data: {}, children: [{tag: 'div'}]}
+        */
+
+
+        // 生成虚拟DOM数   
+        // tag =>标签名， data => 属性， value => 文本，type => 标签类型 
+        // 在vue中还有elm  实际DOM与虚拟DOM有一一对应关系
+        class VNode {
+            constructor(tag, data, value, type) {
+                this.tag = tag && tag.toLowerCase();
+                this.data = data;
+                this.value = value;
+                this.type = type;
+                this.children = [];
+            }
+            // 追加子节点 往children中添加子节点
+            appendChild(VNode) {
+                this.children.push(VNode);
+            }
+        }
+        // 使用递归来编辑DOM元素，生成虚拟DOM  （简易）
+        // vue 中使用栈结构 父元素来实现递归生成
+        // 回车换行也会生成空的文本对象
+        function getVNode(node) {
+            let nodeType = node.nodeType;
+            let _vnode = null;
+            if (nodeType === 1) { // 元素
+                let nodeName = node.nodeName;
+                let attrs = node.attributes; // 返回为数组 数组转化为对象
+                let _attrsObj = {};
+                for (let i = 0; i < attrs.length; i++) { // attrs[i]为属性节点 有nodeName和nodeValue nodeType = 2
+                    _attrsObj[attrs[i].nodeName] = attrs[i].nodeValue;
+                }
+                _vnode = new VNode(nodeName, _attrsObj, undefined, nodeType); // 创建
+
+                // 考虑是否有子元素
+                let childNode = node.childNodes;
+                for (let i = 0; i < childNode.length; i++) {
+                    _vnode.appendChild(getVNode(childNode[i])); // 递归加到_vnode中
+                }
+            } else if (nodeType === 3) {
+                _vnode = new VNode(undefined, undefined, node.nodeValue, nodeType);
+            }
+            return _vnode;
+        }
+        let root = document.querySelector('#app')
+        let vnode = getVNode(root)
+        console.log(vnode)
+        /**
+         * 2. 解析虚拟DOM树
+         * 将虚拟DOM转化为真实DOM
+         */
+        function parseVNode(VNode) {
+
+        }
+    </script>
+</body>
+
+</html>

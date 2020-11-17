@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>整合正VUE</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+    </div>
+
+    <script>
+        // 整合一个Vue
+        let rkuohao = /\{\{(.+?)\}\}/g;
+        // 定义一个构造函数
+        function LnnVue(option) {
+            // 习惯：内部(私有)的数据用_开头 只读的数据用$开头
+            this._data = option.data;
+            this._el = option.el;
+
+            // 准备工作  (准备模板，数据-this._data)
+            this.$el = this._templateDOM = document.querySelector(this._el);
+            this._parent = this._templateDOM.parentNode;
+
+            // 渲染工作
+            this.render();
+
+        }
+        // 将模板与数据结合的html 加载到页面中  从而可细分成编辑和将html加载到页面中
+        LnnVue.prototype.render = function () {
+            this.compiler();
+        };
+        // b编译 将模板与数据结合得到正常的都dom元素
+        LnnVue.prototype.compiler = function () {
+            let realHTMLDom = this._templateDOM.cloneNode(true); // 用模板拷贝一个dom树
+            compiler(realHTMLDom, this._data); // 进行编译
+            this.update(realHTMLDom);
+        };
+        //将得到的dom元素加载到页面中
+        LnnVue.prototype.update = function (template) {
+            this._parent.replaceChild(template, this.$el);
+        };
+
+        // 正常编译方法
+        function compiler(template, data) {
+            let child = template.childNodes;
+            for (let i = 0; i < child.length; i++) {
+                // 判断节点类型
+                let type = child[i].nodeType; // 1.元素 3. 文本节点
+                if (type == 3) { // 文本节点可能有{{}}
+                    let txt = child[i].nodeValue; // 获取文本
+                    // 判断是否{{}}
+                    txt = txt.replace(rkuohao, function (_, g) { // 参数1 匹配到的数据 返回替换的数据 参数n表示正则中的第n组
+                        let key = g.trim(); // 为{{}}中的数据
+                        let value = data[key];
+                        return value;
+                    })
+                    child[i].nodeValue = txt;
+
+                } else if (type == 1) {
+                    // 元素 是否有子元素，是否将其子元素递归  有插值
+                    compiler(child[i], data)
+                }
+            }
+        }
+        let app = new LnnVue({
+            el: '#app',
+            data: {
+                message: '信息'
+            }
+        });
+    </script>
+</body>
+</html>
