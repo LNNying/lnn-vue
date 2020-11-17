@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue-dome</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <p>{{message}} - {{name}}</p>
+            <p>{{name}}</p>
+        </div>
+    </div>
+    <script>
+        /**
+        vue 数据驱动
+        数据驱动 大致意思是 数据改变，在不手动操作dom的情况下，更新页面数据
+        MVVM
+        M -> JavaScript中数据
+        V -> HTML dom
+        VM -> 连接M与V中间插件  也就是在VM中将数据和模板进行转化
+        */
+        // 定义正则
+        let pattern = /\{\{(.+?)\}\}/g;
+        // 1.获取第一个名为app的id
+        let root = document.querySelector("#app");
+        console.log(root);
+        // 2.定义数据源
+        let data = {
+            message: '数据2',
+            name: '数据来源'
+        };
+
+        // 3.定义递归方法  处理深层dom
+        function compiler(template, data) {
+            // 获取模板下的所有子元素 这也是为什么vue 必须在一个块级元素中 一定会有一个子元素
+            let childNodes = template.childNodes;
+            // 遍历子元素
+            for (let i = 0; i < childNodes.length; i++) {
+                // 判断资源的类型 1->元素节点 2->属性节点 3->文本节点 8->注释节点 9->document 11->DocumentFragment
+                let type = childNodes[i].nodeType;
+                if (type === 3) { // 文本节点
+                    let txt = childNodes[i].nodeValue;
+                    txt = txt.replace(pattern, (tem, g) => { // 用数据替换{{}}模板 参数tem为{{}}, g 为第几组 检测到()几组有调用几次函数
+                        let key = g.trim(); // 去除空格
+                        let value = data[g]; // 获取data中数据
+                        return value;
+                    });
+                    // 替换子元素文本内容
+                    childNodes[i].nodeValue = txt;
+                } else if (type === 1) { // 元素节点  说明下面还有子元素 递归
+                    compiler(childNodes[i], data);
+                };
+            };
+        };
+        // 克隆一份dom 保留原始dom  数据双向绑定时用 dom是引用数据类型
+        let generateNodes = root.cloneNode(true);
+        compiler(generateNodes, data);
+        // 将generateNode替换原始dom root
+        root.parentNode.replaceChild(generateNodes, root)
+        console.log(generateNodes)
+
+      
+        // function twoAway(data) {
+        //     for (let key in data) { // 遍历
+        //         if (typeof data[key] === 'object') {
+        //             twoAway(data[key]);
+        //         } else {
+        //             Object.defineProperty(data, key, {
+        //                 enumerable: true,
+        //                 configurable: true,
+        //                 get: () => {
+        //                     return data[key];
+        //                 },
+        //                 set: (value) => {
+        //                     data[key] = value
+        //                 }
+        //             });
+        //         };
+        //     };
+        // };
+        // let j = 0;
+        // document.querySelector("#btn").addEventListener('click', () => {
+        //     console.log(j)
+        //     data.message = data.message + j;
+        //     j += 1;
+        // });
+    </script>
+</body>
+
+</html>
