@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+    </div>
+    <script>
+        // 正则表达式  处理插值
+        let rkuohao = /\{\{(.+?)\}\}/g;
+        /**
+        1. 拿到模板
+        2. 拿到数据
+        3. 将数据与模板集合，得到dom元素
+        4. 放到页面上
+        */
+        let root = document.getElementById("app");
+        let data = {
+            message: '信息'
+        }
+        // 3. 将数据与模板结合
+        // 使用递归处理
+        // 现在要判断template是什么  在这里是dom元素，而在vue源码中为字符串（转化：dom -> 字符串
+        // -> 抽象语法树 -> 虚拟dom -> 真正dom），设计到字符串的解析
+        // 此时没有生成新的template 是个引用类型 所以这里看到的直接在页面中修改，因为dom是引用类型 这样模板就没了，就不能用响应式
+        function compiler(template, data) {
+            let child = template.childNodes;
+            for (let i = 0; i < child.length; i++) {
+                // 判断节点类型
+                let type = child[i].nodeType; // 1.元素 3. 文本节点
+                if (type == 3) { // 文本节点可能有{{}}
+                    let txt = child[i].nodeValue; // 获取文本
+                    // 判断是否{{}}
+                    txt = txt.replace(rkuohao, function (_, g) { // 参数1 匹配到的数据 返回替换的数据 参数n表示正则中的第n组
+                        let key = g.trim(); // 为{{}}中的数据
+                        let value = data[key];
+                        return value;
+                    })
+                    child[i].nodeValue = txt;
+
+                } else if (type == 1) {
+                    // 元素 是否有子元素，是否将其子元素递归  有插值
+                    compiler(child[i], data)
+                }
+            }
+        }
+
+        let generateNode = root.cloneNode(true) // dom元素可以这样用
+        console.log(root)
+        compiler(generateNode, data)
+        console.log(generateNode)
+        // 4.  放到页面中
+        root.parentNode.replaceChild(generateNode, root) // 替换元素
+
+        // 上面思路有问题
+        // 1. vue 用虚拟dom  这里用的是真实dom
+        // 2. 只考虑到了 单属性({{name}}), 而vue大量使用层级({{child.name}})
+        // 3. 代码没有整合
+    </script>
+</body>
+
+</html>

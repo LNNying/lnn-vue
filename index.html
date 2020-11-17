@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+    <!-- vue 中的数据驱动简单说是替换模板,利用data中所提供的变量替换html中模板，生成一个新的Html标签。 -->
+    <div id="app">
+        <p>{{message}}</p>
+    </div>
+    <script>
+    
+        let app = new Vue({
+            el: '#app',
+            data: {
+                message: '信息'
+            }
+        })
+    </script>
+</body>
+</html>
