@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>vue-dome</title>
+    <title>初始VUE</title>
 </head>
 
 <body>
@@ -61,32 +61,6 @@
         // 将generateNode替换原始dom root
         root.parentNode.replaceChild(generateNodes, root)
         console.log(generateNodes)
-
-      
-        // function twoAway(data) {
-        //     for (let key in data) { // 遍历
-        //         if (typeof data[key] === 'object') {
-        //             twoAway(data[key]);
-        //         } else {
-        //             Object.defineProperty(data, key, {
-        //                 enumerable: true,
-        //                 configurable: true,
-        //                 get: () => {
-        //                     return data[key];
-        //                 },
-        //                 set: (value) => {
-        //                     data[key] = value
-        //                 }
-        //             });
-        //         };
-        //     };
-        // };
-        // let j = 0;
-        // document.querySelector("#btn").addEventListener('click', () => {
-        //     console.log(j)
-        //     data.message = data.message + j;
-        //     j += 1;
-        // });
     </script>
 </body>
 

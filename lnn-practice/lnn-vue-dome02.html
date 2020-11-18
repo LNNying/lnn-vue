@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>整合VUE</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+    </div>
+    <script>
+        // 定义正则表达式
+        const pattern = /\{\{(.+?)\}\}/g;
+
+        // vue构造函数
+        function LnnVue(option) {
+            // 私有属性
+            this._data = option.data;
+            this._el = option.el;
+
+            // 定义私有属性接收dom
+            this.$_el = this._templateNode = document.querySelector('#app');
+            this._parent = this._templateNode.parentNode;
+
+            // 将整合好的html渲染到页面中
+            this.render();
+        }
+        // 包含了 编译和更新dom
+        LnnVue.prototype.render = function () {
+            // 调用编译方法
+            this.compiler();
+        }
+        // 更新dom
+        LnnVue.prototype.update = function (template) {
+            this._parent.replaceChild(template, this.$_el);
+        }
+
+
+        // 编译方法
+        LnnVue.prototype.compiler = function () {
+            // 克隆一个dom
+            let templateCopy = this._templateNode.cloneNode(true);
+            compiler(templateCopy, this._data);
+            this.update(templateCopy);
+        }
+
+        // 编译方法
+        function compiler(template, data) {
+            let childNodes = template.childNodes;
+            for (let i = 0; i < childNodes.length; i++) {
+                let type = childNodes[i].nodeType;
+                if (type === 1) { // 元素
+                    compiler(childNodes[i], data);
+                } else if (type === 3) { // 文本节点
+                    let txt = childNodes[i].nodeValue;
+                    txt = txt.replace(pattern, (tem, g) => {
+                        let key = g.trim();
+                        let value = data[key];
+                        return value;
+                    })
+                    // 修改原来的数据
+                    childNodes[i].nodeValue = txt;
+                }
+            }
+        }
+
+
+
+
+        // 构造出来的样子为如下
+        let lnnVue = new LnnVue({
+            el: '#app',
+            data: {
+                message: '信息'
+            }
+        });
+    </script>
+</body>
+
+</html>
