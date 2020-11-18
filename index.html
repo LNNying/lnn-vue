@@ -10,13 +10,15 @@
     <!-- vue 中的数据驱动简单说是替换模板,利用data中所提供的变量替换html中模板，生成一个新的Html标签。 -->
     <div id="app">
         <p>{{message}}</p>
+        <p>{{name}}</p>
     </div>
     <script>
     
         let app = new Vue({
             el: '#app',
             data: {
-                message: '信息'
+                message: '信息',
+                name: 'LNN'
             }
         })
     </script>

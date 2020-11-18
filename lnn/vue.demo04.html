@@ -33,10 +33,10 @@
         // tag =>标签名， data => 属性， value => 文本，type => 标签类型 
         // 在vue中还有elm  实际DOM与虚拟DOM有一一对应关系
         class VNode {
-            constructor(tag, data, value, type) {
+            constructor(tag, data, text, type) {
                 this.tag = tag && tag.toLowerCase();
                 this.data = data;
-                this.value = value;
+                this.text = text;
                 this.type = type;
                 this.children = [];
             }
@@ -87,7 +87,7 @@
                 let childNode = vnode.children;
                 for (let i = 0; i < childNode.length; i++) {
                     if (childNode[i].type === 3) { // 文本节点
-                        let txtNode = document.createTextNode(childNode[i].value)
+                        let txtNode = document.createTextNode(childNode[i].text)
                         _dom.appendChild(txtNode)
                     } else if (childNode[i].type === 1) { // 元素
                         _dom.appendChild(parseVNode(childNode[i]));
