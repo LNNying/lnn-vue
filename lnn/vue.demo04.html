@@ -74,7 +74,7 @@
         let vnode = getVNode(root)
         console.log(vnode)
         /**
-         * 2. 解析虚拟DOM树
+         * 2. 解析虚拟DOM树  我的
          * 将虚拟DOM转化为真实DOM
          */
         function parseVNode(vnode) {
@@ -96,7 +96,32 @@
             }
             return _dom;
         }
-        let domd = parseVNode(vnode);
+        // 别人的
+        function parseVNodes(vnode) {
+            let type = vnode.type;
+            let _node = null;
+            if (type === 3) {
+                return document.createTextNode(vnode.text);
+            } else if (type === 1) {
+                _node = document.createElement(vnode.tag);
+
+                // 属性
+                let data = vnode.data;
+                Object.keys(data).forEach(key => {
+                    let attrName = key;
+                    let attrValue = data[key];
+                    _node.setAttribute(attrName, attrValue);
+                })
+
+                // 子元素
+                let child = vnode.children;
+                child.forEach(subNode => {
+                    _node.appendChild(parseVNodes(subNode));
+                });
+                return _node;
+            }
+        }
+        let domd = parseVNodes(vnode);
         console.log(domd);
     </script>
 </body>
