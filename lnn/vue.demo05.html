@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数科里化与渲染模型</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{name}}</p>
+    </div>
+    <script>
+        const pattern = /\{\{(.+?)\}\}/g;
+
+        function getValueByPath(obj, path) {
+            let paths = path.split('.') // [xxx, yy, zz]
+            let res = obj;
+            let prop;
+            while (prop = paths.shift()) {
+                res = res[prop];
+            };
+            return res;
+        }
+        // 转换带数据的Vnode 模拟ast
+        function combine(vnode, data) {
+            // 可用解构 {_type, _data, _value, _tag, _children} = vnode
+            let _type = vnode.type;
+            let _data = vnode.data;
+            let _value = vnode.text;
+            let _tag = vnode.tag;
+            let _children = vnode.children;
+
+            let _vnode = null;
+            if (_type === 3) { // 文本节点
+                // 对文本处理
+                _value = _value.replace(pattern, (_, g) => {
+                    return getValueByPath(data, g.trim());
+                });
+                _vnode = new VNode(_tag, _data, _value, _type);
+            } else if (_type === 1) { // 元素
+                _vnode = new VNode(_tag, _data, _value, _type);
+                _children.forEach(element => {
+                    _vnode.appendChild(combine(element, data))
+                });
+            }
+            return _vnode;
+        }
+        // 生成虚拟dom
+        class VNode {
+            constructor(tag, data, text, type) {
+                this.tag = tag && tag.toLowerCase();
+                this.data = data;
+                this.text = text;
+                this.type = type;
+                this.children = [];
+            }
+            // 追加子节点 往children中添加子节点
+            appendChild(VNode) {
+                this.children.push(VNode);
+            }
+        }
+        // 将这个函数当作为AST
+        function getVNode(node) {
+            let nodeType = node.nodeType;
+            let _vnode = null;
+            if (nodeType === 1) { // 元素
+                let nodeName = node.nodeName;
+                let attrs = node.attributes; // 返回为数组 数组转化为对象
+                let _attrsObj = {};
+                for (let i = 0; i < attrs.length; i++) { // attrs[i]为属性节点 有nodeName和nodeValue nodeType = 2
+                    _attrsObj[attrs[i].nodeName] = attrs[i].nodeValue;
+                }
+                _vnode = new VNode(nodeName, _attrsObj, undefined, nodeType); // 创建
+
+                // 考虑是否有子元素
+                let childNode = node.childNodes;
+                for (let i = 0; i < childNode.length; i++) {
+                    _vnode.appendChild(getVNode(childNode[i])); // 递归加到_vnode中
+                }
+            } else if (nodeType === 3) {
+                _vnode = new VNode(undefined, undefined, node.nodeValue, nodeType);
+            }
+            return _vnode;
+        }
+
+        function LNNVue(option) {
+            this._data = option.data;
+            this._el = option.el;
+            this._template = document.querySelector(this._el); // vue中字符串
+            // 挂在dom
+            this.mount();
+        }
+
+        LNNVue.prototype.mount = function () {
+            // 声明render方法 : 生成虚拟dom  带有缓存功能
+            this.render = this.creatRender();
+
+
+            this.mountComponent();
+        }
+        // 执行mount挂载
+        LNNVue.prototype.mountComponent = function () {
+            // 函数体
+            let mount = () => {
+                // update 渲染dom
+                this.update(this.render());
+            }
+            mount.call(this); // 本质上应该交给watcher调用
+        }
+
+        // 生成render函数 目的缓存抽象语法树  生成新的虚拟dom  函数科里化和闭包
+        LNNVue.prototype.creatRender = function () {
+            // 将AST+data => Vnode
+            // 用模板{{}}VNode+data=>含有数据的Vnode
+            // 缓存AST
+            let ast = getVNode(this._template);
+            return function render() {
+                // 将模板{{}}VNOde转换为带数据VNode
+                return combine(ast, this._data);
+            }
+        }
+
+        /**
+        为什么不用新的VNode进行替换？页面的vnode与dom是一一对应，如果替换之间的关系需要重新绑定，就会涉及到树的递归遍历访问，消耗性能
+        在vue中使用的二次提交设计结构  生成试一次  比较试一次
+        1. 在页面当中dom与虚拟dom是一一对应的关系(只要数据改变，就会生成新的虚拟dom(新数据的)新的虚拟dom与页面中的虚拟dom  不同更新页面虚拟dom
+           缓存的是抽象语法树)
+        2. 先又AST 和数据生成VNode(在render中) 
+        3. 在又新的Vnode与旧的VNode进行比较 diff算法
+        */
+        // 将虚拟dom渲染到页面中 diff算法在这里  
+        LNNVue.prototype.update = function () {
+            // 简化 之间生成dom replaceChild
+        }
+
+
+
+
+        let app = new LNNVue({
+            el: '#app',
+            data: {
+                name: 'LNN'
+            }
+        });
+
+    </script>
+</body>
+
+</html>
