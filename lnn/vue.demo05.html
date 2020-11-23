@@ -84,11 +84,36 @@
             }
             return _vnode;
         }
+        // VNode转换为dom
+        function parseVNodes(vnode) {
+            let type = vnode.type;
+            let _node = null;
+            if (type === 3) {
+                return document.createTextNode(vnode.text);
+            } else if (type === 1) {
+                _node = document.createElement(vnode.tag);
+                // 属性
+                let data = vnode.data;
+                Object.keys(data).forEach(key => {
+                    let attrName = key;
+                    let attrValue = data[key];
+                    _node.setAttribute(attrName, attrValue);
+                });
+
+                // 子元素
+                let child = vnode.children;
+                child.forEach(subNode => {
+                    _node.appendChild(parseVNodes(subNode));
+                });
+                return _node;
+            }
+        }
 
         function LNNVue(option) {
             this._data = option.data;
             this._el = option.el;
-            this._template = document.querySelector(this._el); // vue中字符串
+            this.$_el = this._template = document.querySelector(this._el); // vue中字符串
+            this._parent = this._template.parentNode;
             // 挂在dom
             this.mount();
         }
@@ -131,8 +156,10 @@
         3. 在又新的Vnode与旧的VNode进行比较 diff算法
         */
         // 将虚拟dom渲染到页面中 diff算法在这里  
-        LNNVue.prototype.update = function () {
+        LNNVue.prototype.update = function (vnode) {
             // 简化 之间生成dom replaceChild
+            let dom = parseVNodes(vnode);
+            this._parent.replaceChild(dom, this.$_el)
         }
 
 
