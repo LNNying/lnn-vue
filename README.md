@@ -70,3 +70,20 @@ render 的作用 将虚拟dom转换为真正的dom加到页面中
 科里化   目的返回一部分行为
 
 
+# 响应式原理
+-在使用vue的时候，赋值属性获取属性都是直接使用的vue实例
+-设置属性值的时候，页面需要相应、
+-在vue中使用了defineRective(target, key, value, enumerable)用这个函数的闭包存储变量
+
+```
+Object.defineProperty('对象'， '设置什么样的属性'，{
+    writeable，
+    configable，
+    enumerable， // 控制属性是否可枚举，是不是可以被for-in取出来
+    set，// 赋值触发
+    get
+});
+
+```
+
+

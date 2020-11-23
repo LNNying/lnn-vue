@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式</title>
+</head>
+
+<body>
+    <script>
+        let o = {
+            name: 'LNN'
+        }
+
+        // 简化版 通过函数参数局部变量 局部作用域，  闭包
+        function defineReacive(target, key, value, enumerable) {
+            Object.defineProperty(target, key, {
+                configurable: true,
+                enumerable: !!enumerable,
+                get() {
+                    return value;
+                },
+                set(newVal) {
+                    value = newVal;
+                }
+            })
+        }
+
+        // 将对象转换为响应式的
+        let keys = Object.keys(o);
+        for (let i = 0; i <= keys.length; i++) {
+            defineReacive(o, keys[i], o[keys[i]], true)
+        }
+    </script>
+</body>
+
+</html>
