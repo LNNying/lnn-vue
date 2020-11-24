@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完整版响应式</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{name}}</p>
+    </div>
+    <script>
+        // 响应式化
+        let ARRAY_METHOD = [
+            'push',
+            'pop',
+            'unshift',
+            'shift',
+            'reverse',
+            'sort',
+            'splice'
+        ];
+        // 思路 原型__proto__
+        let array_method = Object.create(Array.prototype); // 空对象，原型继承Array.prototype
+        ARRAY_METHOD.forEach(item => {
+            array_method[item] = function () {
+                // 在这里进行数据响应式化
+                for (let i = 0; i < arguments.length; i++) {
+                    reactify(arguments[i]); // 循环调用响应式方法
+                }
+                //调用原来的方法
+                let res = Array.prototype[item].apply(this, arguments); // 改写上下文
+                return res;
+            }
+        });
+        let arr = [];
+        arr.__proto__ = array_method;
+        let data = {
+            name: 'LNN',
+            age: 13,
+            cource: [
+                {
+                    name: '语文'
+                },
+                {
+                    name: '数学'
+                }
+            ]
+        }
+        /**
+        将对象响应式化
+        */
+        function reactify(datam, vm) {
+            let keys = Object.keys(data);
+            for (let i = 0; i < keys.length; i++) {
+                let key = keys[i];
+                let value = data[key];
+
+                if (Array.isArray(value)) {
+                    // 数组
+                    value.__proto__ = array_method; // 这样数组就可以响应式了
+                    for (let j = 0; j < value.length; j++) {
+                        reactify(value[j], vm);
+                    }
+
+                } else {
+                    // 对象或值类型
+                    defineReacive.call(vm, data, key, value, true);
+                }
+            }
+        }
+
+        function defineReacive(target, key, value, enumerable) {
+            // 这种处理this=vue实例
+            let that = this;
+            if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                // 对象
+                reactify(value);
+            }
+
+            Object.defineProperty(target, key, {
+                configurable: true,
+                enumerable: !!enumerable,
+                get() {
+                    return value;
+                },
+                set(newVal) {
+                    // 这里进行模板刷新
+                    // 怎么获取vue实例
+                    // 简单处理
+                    value = newVal;
+                    this.mountComponent();
+                }
+            })
+        }
+
+
+
+        const pattern = /\{\{(.+?)\}\}/g;
+
+        function getValueByPath(obj, path) {
+            let paths = path.split('.') // [xxx, yy, zz]
+            let res = obj;
+            let prop;
+            while (prop = paths.shift()) {
+                res = res[prop];
+            };
+            return res;
+        }
+        // 转换带数据的Vnode 模拟ast
+        function combine(vnode, data) {
+            // 可用解构 {_type, _data, _value, _tag, _children} = vnode
+            let _type = vnode.type;
+            let _data = vnode.data;
+            let _value = vnode.text;
+            let _tag = vnode.tag;
+            let _children = vnode.children;
+
+            let _vnode = null;
+            if (_type === 3) { // 文本节点
+                // 对文本处理
+                _value = _value.replace(pattern, (_, g) => {
+                    return getValueByPath(data, g.trim());
+                });
+                _vnode = new VNode(_tag, _data, _value, _type);
+            } else if (_type === 1) { // 元素
+                _vnode = new VNode(_tag, _data, _value, _type);
+                _children.forEach(element => {
+                    _vnode.appendChild(combine(element, data))
+                });
+            }
+            return _vnode;
+        }
+        // 生成虚拟dom
+        class VNode {
+            constructor(tag, data, text, type) {
+                this.tag = tag && tag.toLowerCase();
+                this.data = data;
+                this.text = text;
+                this.type = type;
+                this.children = [];
+            }
+            // 追加子节点 往children中添加子节点
+            appendChild(VNode) {
+                this.children.push(VNode);
+            }
+        }
+        // 将这个函数当作为AST
+        function getVNode(node) {
+            let nodeType = node.nodeType;
+            let _vnode = null;
+            if (nodeType === 1) { // 元素
+                let nodeName = node.nodeName;
+                let attrs = node.attributes; // 返回为数组 数组转化为对象
+                let _attrsObj = {};
+                for (let i = 0; i < attrs.length; i++) { // attrs[i]为属性节点 有nodeName和nodeValue nodeType = 2
+                    _attrsObj[attrs[i].nodeName] = attrs[i].nodeValue;
+                }
+                _vnode = new VNode(nodeName, _attrsObj, undefined, nodeType); // 创建
+
+                // 考虑是否有子元素
+                let childNode = node.childNodes;
+                for (let i = 0; i < childNode.length; i++) {
+                    _vnode.appendChild(getVNode(childNode[i])); // 递归加到_vnode中
+                }
+            } else if (nodeType === 3) {
+                _vnode = new VNode(undefined, undefined, node.nodeValue, nodeType);
+            }
+            return _vnode;
+        }
+        // VNode转换为dom
+        function parseVNodes(vnode) {
+            let type = vnode.type;
+            let _node = null;
+            if (type === 3) {
+                return document.createTextNode(vnode.text);
+            } else if (type === 1) {
+                _node = document.createElement(vnode.tag);
+                // 属性
+                let data = vnode.data;
+                Object.keys(data).forEach(key => {
+                    let attrName = key;
+                    let attrValue = data[key];
+                    _node.setAttribute(attrName, attrValue);
+                });
+
+                // 子元素
+                let child = vnode.children;
+                child.forEach(subNode => {
+                    _node.appendChild(parseVNodes(subNode));
+                });
+                return _node;
+            }
+        }
+        // vue构造函数
+        function LNNVue(option) {
+            this._data = option.data; 
+            this._el = option.el;
+            this.$_el = this._template = document.querySelector(this._el); // vue中字符串
+            this._parent = this._template.parentNode;
+
+            reactify(this._data, this); // 变成响应式 reactify没有返回值 必须这样调用, 将vue实例传入 模拟
+
+            // 挂在dom
+            this.mount();
+        }
+
+        LNNVue.prototype.mount = function () {
+            this.render = this.creatRender();
+
+
+            this.mountComponent();
+        }
+        // 执行mount挂载
+        LNNVue.prototype.mountComponent = function () {
+            // 函数体
+            let mount = () => {
+                this.update(this.render());
+            }
+            mount.call(this);
+        }
+
+        LNNVue.prototype.creatRender = function () {
+            let ast = getVNode(this._template);
+            return function render() {
+                return combine(ast, this._data);
+            }
+        }
+
+        LNNVue.prototype.update = function (vnode) {
+            let dom = parseVNodes(vnode);
+            this._parent.replaceChild(dom, this.$_el)
+        }
+
+
+        let app = new LNNVue({
+            el: '#app',
+            data: {
+                name: 'LNN'
+            }
+        });
+
+        // 修改数据的时候模板刷新  在执行set的时候进行模板刷新 调用mountComponent即可
+
+    </script>
+</body>
+
+</html>

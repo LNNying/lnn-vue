@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拦截数组的方法</title>
+</head>
+<body>
+   <script>
+       let arrs = [];
+       console.log(arrs.__proto__);
+       let ARRAY_METHOD = [
+          'push',
+          'pop',
+          'unshift',
+          'shift',
+          'reverse',
+          'sort',
+          'splice'
+       ];
+       // 思路 原型__proto__
+       let array_method = Object.create(Array.prototype); // 空对象，原型继承Array.prototype
+       ARRAY_METHOD.forEach(item => {
+           array_method[item] = function() {
+               // 在这里进行数据响应式化
+               
+               //调用原来的方法
+                let res = Array.prototype[item].apply(this, arguments); // 改写上下文
+                return res;
+           }
+       });
+       let arr = [];
+       arr.__proto__ = array_method;
+       // 在vue中还判断了__proto__兼容性， 不支持vue用mixin法
+   </script> 
+</body>
+</html>

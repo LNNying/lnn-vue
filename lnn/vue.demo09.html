@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>处理数据响应式化</title>
+</head>
+
+<body>
+    <script>
+
+        let ARRAY_METHOD = [
+            'push',
+            'pop',
+            'unshift',
+            'shift',
+            'reverse',
+            'sort',
+            'splice'
+        ];
+        // 思路 原型__proto__
+        let array_method = Object.create(Array.prototype); // 空对象，原型继承Array.prototype
+        ARRAY_METHOD.forEach(item => {
+            array_method[item] = function () {
+                // 在这里进行数据响应式化
+                for (let i = 0; i < arguments.length; i++) {
+                    reactify(arguments[i]); // 循环调用响应式方法
+                }
+                //调用原来的方法
+                let res = Array.prototype[item].apply(this, arguments); // 改写上下文
+                return res;
+            }
+        });
+        let arr = [];
+        arr.__proto__ = array_method;
+        let data = {
+            name: 'LNN',
+            age: 13,
+            cource: [
+                {
+                    name: '语文'
+                },
+                {
+                    name: '数学'
+                }
+            ]
+        }
+        /**
+        将对象响应式化
+        */
+        function reactify(data) {
+            let keys = Object.keys(data);
+            for (let i = 0; i < keys.length; i++) {
+                let key = keys[i];
+                let value = data[key];
+            
+                if (Array.isArray(value)) {
+                    // 数组
+                    value.__proto__ = array_method; // 这样数组就可以响应式了
+                    for (let j = 0; j < value.length; j++) {
+                        reactify(value[j]);
+                    }
+
+                } else {
+                    // 对象或值类型
+                    defineReacive(data, key, value, true);
+                }
+            }
+        }
+
+        function defineReacive(target, key, value, enumerable) {
+
+            if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                // 对象
+                reactify(value);
+            }
+
+            Object.defineProperty(target, key, {
+                configurable: true,
+                enumerable: !!enumerable,
+                get() {
+                    return value;
+                },
+                set(newVal) {
+                    value = newVal;
+                }
+            })
+        }
+
+        // 问题1 data.course = {name: '计算机'} 这样赋值 是不响应的
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式-递归处理多层级</title>
+</head>
+<body>
+    <script>
+        let data = {
+            name: 'LNN',
+            age: 13,
+            cource: [
+                {
+                    name: '语文'
+                },
+                {
+                    name: '数学'
+                }
+            ]
+        }
+        /**
+        将对象响应式化
+        */
+        function reactify(data) {
+            let keys = Object.keys(data);
+            for (let i = 0 ; i < keys.length; i++) {
+                let key = keys[i];
+                let value = data[key];
+                // 判断是否为引用类型或数组类型
+                // 如果是引用类型要进行递归，用defineReacive变成响应式
+                // 如果不是引用，用defineReacive变成响应式
+                // 如果是数组，循环数组，将数组中的数据进行递归响应式化
+                // 所以递归算法写在了defineReacive方法中
+                // 考虑数组的响应式化 push或pop等方法
+               
+                if (Array.isArray(value)) {
+                    // 数组
+                    for (let j = 0; j < value.length; j++) {
+                        reactify(value[j]);
+                    } 
+
+                } else {
+                    // 对象或值类型
+                    defineReacive(data, key, value, true);
+                }
+            }
+        }
+
+        function defineReacive(target, key, value, enumerable) {
+
+            if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                // 对象
+                reactify(value);
+            }
+
+            Object.defineProperty(target, key, {
+                configurable: true,
+                enumerable: !!enumerable,
+                get() {
+                    return value;
+                },
+                set(newVal) {
+                    value = newVal;
+                }
+            })
+        }
+        reactify(data);
+    </script>
+</body>
+</html>
