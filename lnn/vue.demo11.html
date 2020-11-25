@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>完整版响应式</title>
+    <title>处理数据响应式化---发布订阅式Observe方法</title>
 </head>
 
 <body>
@@ -204,8 +204,8 @@
             this.$_el = this._template = document.querySelector(this._el); // vue中字符串
             this._parent = this._template.parentNode;
 
-            reactify(this._data, this); // 变成响应式 reactify没有返回值 必须这样调用, 将vue实例传入 模拟
-
+            // reactify(this._data, this); // 变成响应式 reactify没有返回值 必须这样调用, 将vue实例传入 模拟
+            this.initData(); // 将data进行响应式转化进行响应式代理
             // 挂在dom
             this.mount();
         }
@@ -237,6 +237,18 @@
             this._parent.replaceChild(dom, this.$_el)
         }
 
+        LNNVue.prototype.initData = function () {
+            // 遍历data的成员，将属性变成响应式，代理到实例上
+            let keys = Object.keys(this._data);
+            // 响应式化
+            for (let i = 0; i < keys.length; i++) {
+                // 这里将对象this._data[keys[i]]变成响应式
+            }
+            // 代理
+            for (let i = 0; i < keys.length; i++) {
+                // 这里将对象this._data[keys[i]]映射到this[keys[i]]上
+            }
+        }
 
         let app = new LNNVue({
             el: '#app',

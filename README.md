@@ -120,3 +120,9 @@ func = function () {
 --- 只修改要进行数组响应式化的方法
 
 # 响应式原理
+
+
+# 发布订阅式
+代理方法，就是将app.data映射搭配app上 引入proxy(target,src, prop) 完成映射
+之前处理的reactify需要改写 提供一个Observe方法，在方法中对属性进行处理
+可以将这个方法封装到initData方法中
