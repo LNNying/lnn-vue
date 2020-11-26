@@ -140,7 +140,7 @@
             // 将AST+data => Vnode
             // 用模板{{}}VNode+data=>含有数据的Vnode
             // 缓存AST
-            let ast = getVNode(this._template);
+            let ast = getVNode(this._template); // dom转换为抽象语法树
             return function render() {
                 // 将模板{{}}VNOde转换为带数据VNode
                 return combine(ast, this._data);

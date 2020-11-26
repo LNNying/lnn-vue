@@ -15,9 +15,10 @@
 
         // 简化版 通过函数参数局部变量 局部作用域，  闭包
         function defineReacive(target, key, value, enumerable) {
+            // 通过value作为一个中间变量储存值
             Object.defineProperty(target, key, {
-                configurable: true,
-                enumerable: !!enumerable,
+                configurable: true, // 是否可进行修改删除
+                enumerable: !!enumerable, // 是否可枚举
                 get() {
                     return value;
                 },

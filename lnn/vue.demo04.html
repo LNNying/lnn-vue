@@ -30,10 +30,10 @@
         class VNode {
             constructor(tag, data, text, type) {
                 this.tag = tag && tag.toLowerCase();
-                this.data = data;
-                this.text = text;
-                this.type = type;
-                this.children = [];
+                this.data = data; // 存储属性
+                this.text = text; // 文本
+                this.type = type; // 节点类型
+                this.children = []; // 子代
             }
             // 追加子节点 往children中添加子节点
             appendChild(VNode) {
