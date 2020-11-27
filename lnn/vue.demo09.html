@@ -83,13 +83,16 @@
                 configurable: true,
                 enumerable: !!enumerable,
                 get() {
+                    console.log('获取数组');
                     return value;
                 },
                 set(newVal) {
+                    console.log('添加数组');
                     value = newVal;
                 }
             })
         }
+        reactify(data);
 
         // 问题1 data.course = {name: '计算机'} 这样赋值 是不响应的
     </script>

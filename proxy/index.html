@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy</title>
+</head>
+<div>
+    <p><b>闭包的作用：</b></p>
+    <p>1.可以操作函数局部变量</p>
+    <p>2.延长函数局部变量的声明周期</p>
+    <p><b>函数柯里的作用：</b></p>
+    <p>1.参数复用</p>
+    <p>2.返回接收其他参数的新函数</p>
+    <p>3.延迟执行 返回新函数等待执行</p>
+    <p><b>Proxy的作用：</b></p>
+    <p>1.拦截和监视外部对象的的访问</p>
+    <p>2.降低函数或类的复杂度</p>
+    <p>3.在复杂操作前对操作进行校验或对所需资源进行管理</p>
+</div>
+
+<body>
+    <script>
+        // Proxy作用1  对外部对象进行监视
+        let obj = {
+            age: [12,123],
+            data: {
+                name: {
+                    age: {
+                        desc: 12
+                    },
+                    id: [12,32]
+                }
+            }
+        }
+        let handle = {
+            // proxy 是new的Proxy本身
+            set: (target, key, value, proxy) => {
+                if (key.startsWith('_')) {
+                    console.log('私有属性不可修改');
+                    return false
+                }
+                // target[key] = value
+                console.log('设置属性值');
+                return Reflect.set(target, key, value, proxy);
+            },
+            get: (target, key, proxy) => {
+                if (key.startsWith('_')) {
+                    console.log('私有属性不可读取');
+                    return false
+                }
+                console.log('获取属性值');
+                return Reflect.get(target, key, proxy);
+            }
+        }
+        // let data = new Proxy(obj, handle);
+
+        function toDeepFun(obj, handle) {
+            if (typeof obj !== 'object') {
+                return new Proxy(obj, handle);
+            } else {
+                for (let item in obj) {
+                    if (typeof obj[item] !== 'object') {
+                        return new Proxy(obj, handle);
+                    } else {
+                        obj[item] = toDeepFun(obj[item], handle);
+                    }
+                }
+            }
+            obj = new Proxy(obj, handle);
+            return obj;
+        }
+
+        let dataObj = toDeepFun(obj, handle);
+
+        // Proxy作用3 校验数据  闭包加函数柯里化
+        function createValidate(target, validator) {
+            return new Proxy(target, {
+                set: (target, key, value, proxy) => {
+                    if (target.hasOwnProperty(key)) {
+                        let validateFun = validator[key];
+                        if (validateFun(value)) {
+                            return Reflect.set(target, key, value, proxy);
+                        } else {
+                            throw Error(`${key},值类型错误`);
+                        }
+                    } else {
+                        throw Error(`属性${key}不存在`);
+                    }
+
+                }
+            })
+        }
+
+        let objVali = {
+            name: 'LNN',
+            age: 12
+        }
+        let validateFun = {
+            name(value) {
+                return typeof value === 'string' ? true : false;
+            },
+            age(value) {
+                return typeof value === 'object' ? true : false;
+            }
+        }
+
+        // let dataVali = createValidate(objVali, validateFun);
+    </script>
+</body>
+
+</html>

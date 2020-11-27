@@ -10,7 +10,9 @@
     <!-- vue 中的数据驱动简单说是替换模板,利用data中所提供的变量替换html中模板，生成一个新的Html标签。 -->
     <div id="app">
         <p>{{message}}</p>
-        <p>{{name}}</p>
+        <p>{{name.desc}}</p>
+        <p>{{name.id}}</p>
+        <p>{{id}}</p>
     </div>
     <script>
     
@@ -18,11 +20,16 @@
             el: '#app',
             data: {
                 message: '信息',
-                name: {
+                name: {},
                 age: [12,13]
-            }
+            },
+            mounted() {
+                this.$set(this.name, 'desc', '描述');
+                this.name.id = 1;
+                console.log(this);
             }
         })
+        console.log(app._data.desc);
     </script>
 </body>
 </html>
