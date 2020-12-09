@@ -12,7 +12,7 @@
         <p>{{message}}</p>
         <p>{{name.desc}}</p>
         <p>{{name.id}}</p>
-        <p>{{id}}</p>
+        <p>{{age}}</p>
     </div>
     <script>
     
@@ -26,10 +26,8 @@
             mounted() {
                 this.$set(this.name, 'desc', '描述');
                 this.name.id = 1;
-                console.log(this);
             }
         })
-        console.log(app._data.desc);
     </script>
 </body>
 </html>

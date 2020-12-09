@@ -52,7 +52,7 @@
                     } else if (arguments.length === 1) { // 移除某个类型的所有事件
                         eventObj[type] = []
                     } else if (arguments.length === 2) { // 移除type事件的handler处理函数
-                        // 采用到循环方式 数组的序号不会受到影响
+                        // 采用到循环方式 数组的序号不会受到影响 不存在返回undefined
                         let _events = eventObj[type];
                         if (!_events) {
                             return;
@@ -68,6 +68,7 @@
                 // 出发事件，包装参数，传递事件处理函数
                 emit: function (type) {
                     // 从1开始后面的所有参数  返回的是数组 之所以这样arguments是为数组  没有slice()
+                    // 参数1为 提交的类型
                     let args = Array.prototype.slice.call(arguments, 1);
                     let _events = eventObj[type];
                     if (!_events) {
