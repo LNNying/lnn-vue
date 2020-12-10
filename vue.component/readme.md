@@ -1,6 +1,10 @@
 # 组件的构建思路
 双向数据绑定 绑定数据 @input
 
+v-bind 特殊功能对象展开  转化为键值对
+$attr: 特性集
+如 <input v-bind="$attr"/> 父级 placeholder="aa" 转化为子组件 :placeholder="placeholder"
+
 <Input :value="value" @input="oninput"/>
 value 是v-model 传进来的
 props: {
@@ -28,3 +32,49 @@ this.$emit('update:value', e.target.value) // 双绑定
 - v-model 则是:value 与 @input的语法糖  与this.$emit('input', e.target.value)连用
   - 场景：v-model通常⽤于表单控件，它有默认⾏为，同时属性名和事件名均可在⼦组件定义
   - 习惯上表单元素⽤v-model
+
+  Form
+  <div>
+    <slot></slot>
+  </div>
+  provide() { // 当前传的是form实例
+    return {
+      form: this
+    };
+  }
+  props: {
+    rules: {
+      Object
+    },
+    model: {
+      Object,
+      require: true
+    }
+  },
+  data() {
+    return{
+      error: {}
+    }
+  }
+  
+  
+  FormItem
+  - input 留一个slot
+  - label和error
+  - 校验
+  <div>
+    <label v-if="label">{{label}}</label>
+    <slot></slot>
+    <p v-if="error">{{error}}</p>
+  </div>
+  inject: ['form'], // 用于校验  注入的key
+  props: {
+    label: {
+      String
+    }
+  },
+  data() {
+    return{
+      error: {}
+    }
+  }

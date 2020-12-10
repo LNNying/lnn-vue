@@ -172,4 +172,32 @@ vue 模型 一个全局的Watcher
 
 我们的watcher实例有一个属性vm, 表示就是当前的vue实例
 
-缺少依赖收集和派发更新
+缺少Watcher与Dep代码
+
+dep 
+- 在响应式方法中new Dep()
+- 在get方法中进行依赖收集dep.depend();
+- 在set方法中进行派发更新dep.notify();
+
+vue中每一个组件都是自治的  所以就会有很多watcher
+
+依赖收集和派发更新
+- 多个组件的属性在第一次渲染的时候都会访问到，只要访问到就会进行依赖收集
+- 假设修改了其中一个，就会进行派发更新，派发更新就会到依赖收集查到收集到了什么，收集到什么就更新什么
+
+所谓的依赖收集 就是当前的watcher什么属性被访问了，那么在这个watcher计算或渲染页面的时候就会就会将这写收集到的属性进行更新
+(有可能在vue中赋值的时候get和set都会调用)
+
+如何将属性与当前watcher关联起来？？？
+**vue局部更新  可以说就是子组件的更新 因为每一个组件都一个watcher**
+互相引用在数据结构中为**双向链表**
+注 --》渲染时候：： 我们在访问对象属性的时候(get),我们的渲染watcher就在全局中 ---对应3
+                    将属性与watcher相关联，就是将当前渲染watcher存储到属性相关的dep中
+                    同时将当前dep存储到全局watcher中，就是说dep与watcher互相引用的关系
+                    - 属性引用了当前的渲染watcher，属性知道是谁渲染了他
+                    - watcher引用了访问的属性(dep)，当前watcher知道渲染了什么属性
+
+- 在全局设置一个targetStack(watcher栈，简单理解为watcher数组，把一个操作中需要使用的watcher都存储起来)
+- 在watcher调用get方法的时候，就会将当前watcher放到全局中，在get调用结束的时候，将这个全局watcher移除，也就是那个watcher调用(更新)就把那个watcher方法全局中 ---注：watcher中的个体方法是进行计算和渲染页面 在上面watcher原理中---
+提供两个方法怕pushTarget和popTarget来实现对targetStack的处理
+- （页面在渲染(执行this.mountComponent方法)但是时候就是在执行watcher中get()方法）在每一个属性中都有一个Dep对象
