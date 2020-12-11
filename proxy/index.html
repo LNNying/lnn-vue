@@ -72,7 +72,7 @@
             return obj;
         }
 
-        let dataObj = toDeepFun(obj, handle);
+        // let dataObj = toDeepFun(obj, handle);
 
         // Proxy作用3 校验数据  闭包加函数柯里化
         function createValidate(target, validator) {
@@ -80,6 +80,7 @@
                 set: (target, key, value, proxy) => {
                     if (target.hasOwnProperty(key)) {
                         let validateFun = validator[key];
+                        console.log(this);
                         if (validateFun(value)) {
                             return Reflect.set(target, key, value, proxy);
                         } else {
@@ -106,7 +107,7 @@
             }
         }
 
-        // let dataVali = createValidate(objVali, validateFun);
+        let dataVali = createValidate(objVali, validateFun);
     </script>
 </body>
 
