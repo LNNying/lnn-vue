@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-Construct</title>
+</head>
+<body>
+    <script>
+        
+        /**
+         * construct 与 new Function  一样
+         * 参数1 需要实例化的构造函数
+         * 参数2 实例参数
+         * 参数3 如果存在参数3 则 参数1的构造函数提供属性，参数3的构造函数提供方法
+        */
+        class A1 {
+            constructor(name) {
+                this.name = name;
+            }
+            getName() {
+                console.log(this.name);
+            }
+        }
+
+        class B1 {
+            constructor(age) {
+                this.age = age;
+            }
+
+            getAge() {
+                console.log(this.age);
+            }
+            getName() {
+                console.log(this.name);
+            }
+        }
+
+        let a1 = Reflect.construct(A1, ['Tom'], B1)
+        a1.getName()
+    </script>
+</body>
+</html>

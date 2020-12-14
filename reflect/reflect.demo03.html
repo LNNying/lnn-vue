@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-DefinedProperty</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 与ES5中Object.defineProperty相似
+         * 区别是
+         * ES5中的失败会抛出异常  成功返回一个对象
+         * ES6中的失败会返回false  成功返回true
+         */
+
+        let obj = {};
+        // 对象的属性定义失败
+        try {
+            Object.defineProperty(null, 'a', {
+                value: 22
+            })
+        } catch (e) {
+            console.log('define property failed!');
+        } // define property failed!
+
+        // 使用Object.defineProperty成功的定义
+        let obj1 = Object.defineProperty(obj, 'name', {
+            enumerable: true,
+            value: 'dreamapple'
+        });
+        console.log(obj); // { name: 'dreamapple' }
+        console.log(obj1); // { name: 'dreamapple' }
+
+        // 这里会返回false 因为我们上面定义name这个属性是不可修改的,
+        // 然后我们又在这里修改了name属性,所以修改失败返回值为false
+        let result1 = Reflect.defineProperty(obj, 'name', {
+            configurable: true,
+            enumerable: true,
+            value: 'happy'
+        });
+        console.log(result1); // false
+        let result2 = Reflect.defineProperty(obj, 'age', {
+            configurable: true,
+            enumerable: true,
+            value: 22
+        });
+        console.log(result2); // true
+        console.log(obj); // 
+    </script>
+</body>
+
+</html>

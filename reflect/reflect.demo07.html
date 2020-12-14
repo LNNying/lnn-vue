@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-GetPrototypeOf</title>
+</head>
+<body>
+    <script>
+        /**
+         * 与ES5中 Object.getPrototypeOf 相似
+         * 返回一个对象的原型，也就是内部的[[Prototype]]属性的值
+         * 长用于方法
+         * 果我们要获取原型的那个值不是一个对象，那么函数Reflect.getPrototypeOf会抛出一个异常；如字符串
+         * 对于给定对象的原型，如果没有继承的属性，则返回null。
+        */
+
+        let obj = {
+            name: 'LNN',
+            age: 12
+        }
+
+        function func() {
+            console.log(1);
+        }
+
+        console.log(Reflect.getPrototypeOf(obj))
+        console.log(Reflect.getPrototypeOf(func))
+        console.log(Reflect.getPrototypeOf("func"))
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-Apply</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * ES5中apply和call
+         * 1. apply 不能传递参数 call可以
+         * 调用函数
+         * 参数1 调用的方法
+         * 参数2 上下文this
+         * 参数3 参数伪数组
+         * 
+         */
+        function fun(arge) {
+            console.log(arge);
+        }
+
+        fun.call(this, 'fun-prototype-apply')
+        Function.prototype.call(fun(), undefined, 'Function-apply-call')
+        // Reflect.call(fun, this, 'Reflect-call')
+
+        const arr = [1, 3, 5, 7];
+        let max;
+        // ES6
+        max = Reflect.apply(Math.max, undefined, arr);
+        console.log(max);
+    </script>
+</body>
+
+</html>

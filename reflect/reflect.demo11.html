@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-PreventExtensions</title>
+</head>
+<body>
+    <script>
+        /**
+         * 与ES5 Object.preventExtensions方法相似  不同ES5不是对象会强转 ES6不会抛出异常
+         * 阻止新的属性添加到对象中去
+         * 参数 对象
+         * 实际修改writeable为false
+         * 操作成功返回true  否者返回false
+        */
+
+        let obj = {
+            name: 'LNN'
+        }
+
+        console.log(Reflect.isExtensible(obj));
+        console.log(Reflect.preventExtensions(obj));
+        console.log(Reflect.isExtensible(obj));
+    </script>
+</body>
+</html>

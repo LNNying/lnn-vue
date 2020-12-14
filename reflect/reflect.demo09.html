@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-IsExtensible</title>
+</head>
+<body>
+    <script>
+        /**
+         * 与ES5 Object.isExtensible方法相似 但是如果参数不是对象的话 会强制转化为对象
+         * 检查一个对象是否是可以扩展的，也就是是否可以添加新的属性
+         * 参数1 对象
+         * 参数如果不是对象  抛出异常
+         * 如果可以返回true 
+         * 否者返回false
+         * 主要检测的是对象的writeable是否为true
+        */
+        
+        let obj = {
+            name: 'LNN'
+        }
+
+        console.log(Reflect.isExtensible(obj))
+        console.log(Reflect.isExtensible("obj"))
+    </script>
+</body>
+</html>

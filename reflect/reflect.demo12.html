@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-SetPrototypeOf</title>
+</head>
+<body>
+    <script>
+        /**
+         * 与ES5 Object.setPrototypeOf方法的作用是相似的
+         * 设置一个对象的原型 也就是这是prototype 也就是说vue3中双向数据中数组prototype方法有可能用这个方法实现的
+         * 成功返回true  否者返回false
+         * 
+        */
+
+    let obj = {}
+    console.log(Reflect.setPrototypeOf(obj, Array.prototype))
+    </script>
+</body>
+</html>

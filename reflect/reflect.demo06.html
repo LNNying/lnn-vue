@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-GetOwnPropertyDescriptor</title>
+</head>
+<body>
+    <script>
+        /**
+         * 与ES5中 Object.getOwnPropertyDescriptor 相似
+         * 不同之处:
+         * ES5 参数1如果不是对象的话，会强制转化为对象
+         * ES6 参数1如果不是对象的话，会抛出异常
+         * 
+         * 参数1 对象
+         * 参数2 属性
+         * 如果存在返回这个属性的所有属性描述符(writable: true等)
+         * 否者返回undefined
+         * 
+        */
+        let obj = {
+            name: 'LNN',
+            age: 12
+        }
+
+        console.log(Reflect.getOwnPropertyDescriptor(obj, 'age'))
+        console.log(Reflect.getOwnPropertyDescriptor(obj, 'desc'))
+    </script>
+</body>
+</html>

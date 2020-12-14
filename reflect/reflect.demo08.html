@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-Has</title>
+</head>
+<body>
+    <script>
+        /**
+         * 与ES5 in操作符 相似  确定属性是否存在
+         * 这个函数的返回结果是一个Boolean值，如果存在就返回true，不存在就返回false。
+         * 当然如果目标对象(target)不是一个对象，那么就会抛出一个异常。
+         * 用于对象或构造函数
+        */
+        
+        let obj = {
+            name: 'LNN',
+            age: 12
+        }
+        
+        class A{
+            constructor(name) {
+                this.name = name
+            }
+
+            getName() {
+                console.log(this.name);
+            }
+        }
+
+        console.log(Reflect.has(obj, 'name'))
+
+        console.log(Reflect.has(A, 'name'))
+
+        console.log(Reflect.has("A", 'name'))
+    </script>
+</body>
+</html>

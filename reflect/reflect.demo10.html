@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-OwnKeys</title>
+</head>
+<body>
+    <script>
+        /***
+         * 返回由目标对象自身的属性键组成的数组 也就是属性的数组 等价如下
+         * Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target))
+         * 参数不是对象抛异常
+         */
+        let a = Symbol('a')
+        let obj = {
+            [a]: 'a',
+            name: 'LNN',
+            age: 12
+        }
+        console.log(Object.getOwnPropertyNames(obj).concat(Object.getOwnPropertySymbols(obj)))
+
+        console.log(Reflect.ownKeys(obj))
+    </script>
+</body>
+</html>

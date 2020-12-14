@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-Get/Set</title>
+</head>
+<body>
+    <script>
+        /**
+         * get
+         * 读取属性
+         * 参数1 对象
+         * 参数2 读取的属性
+         * 参数3 可先 如果有上下文 这个就是this  就像vue3中实现的响应式一样 Proxy
+         * 
+         * set
+         * 修改或添加属性
+         * 参数1 对象
+         * 参数2 属性
+         * 参数3 属性值
+         * 参数4 可选 如果有上下文 这个就是this  就像vue3中实现的响应式一样 Proxy
+         * 
+         * 成功返回true  失败返回false
+        */
+        let obj = {
+            name: '测试',
+            age: 12
+        }
+        console.log(Reflect.get(obj, "age"))
+
+        console.log(Reflect.set(obj, 'desc', '这是一个测试'))
+    </script>
+</body>
+</html>

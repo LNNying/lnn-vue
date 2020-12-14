@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect-DeleteProperty</title>
+</head>
+<body>
+    <script>
+        /**
+         * 与delete相似  删除对象上的属性
+         * 参数1 对象
+         * 参数2 要删除的属性
+         * 成功返回true
+         * 失败返回false
+        */
+        let obj = {
+            name: 'LNN',
+            age: 12,
+            desc: '这是一个测试描述'
+        }
+        console.log(Reflect.deleteProperty(obj, 'desc'));
+        console.log(delete obj['age']);
+    </script>
+</body>
+</html>
