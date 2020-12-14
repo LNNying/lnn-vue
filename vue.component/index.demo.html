@@ -3,10 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>组件</title>
+    <title>css-背景切换</title>
     <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        *, html {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        section {
+            width: 100%;
+            height: 100%;
+        }
+        section img {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 1s linear;
+        }
+        .item {
+            position: fixed;
+            width: 700px;
+            height: 120px;
+            bottom: 80px;
+            left: 400px;
+        }
+        .item a {
+            display: block;
+            width: 100px;
+            height: 100px;
+            border: 5px solid #ffffff;
+            float: left;
+            margin-left: 30px;
+            border-radius: 50% 50%;
+            transition: all 1s linear;
+            box-shadow: 0 0 4px #494646;
+        }
+        .item a:nth-child(1) {
+            background-image: url(../css/img/唐三-1.jpg);
+            background-size: 100% 100%;
+        }
+        .item a:nth-child(2) {
+            background-image: url(../css/img/小舞-1.jpeg);
+            background-size: 100% 100%;
+        }
+        .item a:nth-child(3) {
+            background-image: url(../css/img/女-1.jpg);
+            background-size: 100% 100%;
+        }
+        .item a:nth-child(4) {
+            background-image: url(../css/img/男-1.jpg);
+            background-size: 100% 100%;
+        }
+        .item a:nth-child(5) {
+            background-image: url(../css/img/天气-1.jpg);
+            background-size: 100% 100%;
+        }
+        .item a:hover {
+            transform: rotate(360deg);
+        }
+        section img:nth-child(1) {
+            transform: translateX(-100%);
+        }
+        section img:nth-child(1):target {
+            transform: translateX(0%);
+            opacity: 1;
+        }
+        section img:nth-child(2) {
+            transform: translateY(-100%);
+        }
+        section img:nth-child(2):target {
+            transform: translateY(0%);
+            opacity: 1;
+        }
+        section img:nth-child(3) {
+            transform: scale(0);
+        }
+        section img:nth-child(3):target {
+            transform: scale(1) rotate(360deg);
+            opacity: 1;
+        }
+        section img:nth-child(4) {
+            transform: scale(2);
+        }
+        section img:nth-child(4):target {
+            transform: scale(1) rotate(360deg);
+            opacity: 1;
+        }
+        section img:nth-child(5) {
+            transform: translate(-100%, -100%);
+        }
+        section img:nth-child(5):target {
+            transform: translate(0%, 0%);
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-    
+    <section>
+        <img id="img1" src="../css/img/唐三.jpeg"/>
+        <img id="img2" src="../css/img/小舞.jpeg"/>
+        <img id="img3" src="../css/img/女.jpg"/>
+        <img id="img4" src="../css/img/男.jpg"/>
+        <img id="img5" src="../css/img/天气.jpg"/>
+    </section>
+    <div class="item">
+        <a href="#img1"></a>
+        <a href="#img2"></a>
+        <a href="#img3"></a>
+        <a href="#img4"></a>
+        <a href="#img5"></a>
+    </div>
 </body>
 </html>
