@@ -222,7 +222,9 @@
             let mount = () => {
                 this.update(this.render());
             }
-            mount.call(this);
+            // mount.call(this);
+            // 在这里加入渲染watcher
+            new Watcher(this, mount);
         }
 
         LNNVue.prototype.creatRender = function () {
