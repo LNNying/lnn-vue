@@ -236,3 +236,28 @@ serve  服务端
 sfc 单文件组件
 
 shared 公共工具，方法
+
+
+1. vue源码
+  1. Observe文件夹各个文件的作用
+    1. array.js 创建含有 重写数组方法，让所有的响应式数据继承该数据
+    2. dep.js Dep类
+    3. index.js Observe类，Observe的工厂函数
+    4. scheduler.js vue中任务调度工具，watcher执行的核心
+    5. traverse.js 递归遍历响应式数据，目的是触发依赖收集
+       技巧 对数组去重
+       let arr = [1,2,3,3,3,3];
+       一般方法 遍历数组  存数据  返回存储数据 indexOf 隐含循环
+       利用集合Set
+       let _set = {}
+       逻辑中断
+       1. arr.forEach(item => _set[item] || (_set[item] = true))
+        Object.keys( _set )
+       2. let _newArr = []
+      arr.forEach(item => _set[item] || (_set[item] = true,_newArr.push(item)))
+
+      终极  就是如何去判同  查考vue中loseEqua在shared工具文件中 
+
+    6. watcher.js  watcher核心类
+  2. watch和computed
+  3. 简单的说明一下patch

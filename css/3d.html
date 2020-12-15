@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .box {
+            width: 600px;
+            height: 600px;
+            background-color: rgba(0, 0, 0, .5);
+            margin: 100px auto;
+            /**景深*/
+            transform: perspective(900px);
+             /** 3D空间*/
+            transform-style: preserve-3d;
+            /**观看角度*/
+            perspective-origin: right top;
+        }
+        h2 {
+            width: 50px;
+            height: 150px;
+            background-color: yellow;
+            transition: all 2s;
+        }
+        .box:hover h2{
+            transform: rotateX(40deg);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+     <h2>3D空间</h2>
+</div>
+<!-- 
+    转换： 3D
+    Z轴
+    3D空间创建
+    景深：观察物体会有透视的感觉(近大远小)  
+    perspective：1200px 一般用在父元素
+    transform: perspective(1200px)
+    数值在900-1200之间比较合理
+    transform-style：perserve-3d  3D空间 让子元素在3D空间继续变换
+-->
+</body>
+
+</html>
