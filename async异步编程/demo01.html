@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>几种异步编程</title>
+</head>
+
+<body>
+    https://blog.csdn.net/howgod/article/details/93978297
+
+    1、回调函数 常见的是ajax请求
+    优点 简单、容易理解和实现
+    缺点 不利于代码的维护和阅读，各部分高度耦合，每一个任务只能指定一个回调函数，不能使用try-catch补货错误，不能直接用return
+
+    2、事件监听 事件的绑定--onclick
+    这种模式下 异步任务的执行不取决于代码的顺序，而取决于某个事件是否发生
+    这种方法的优点是比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以"去耦合"，有利于实现模块化。
+    缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰。阅读代码的时候，很难看出主流程。
+
+    3、发布订阅 vue中发布订阅模式
+    我们假定，存在一个"信号中心"，某个任务执行完成，就向信号中心"发布"（publish）一个信号，其他任务可以向信号中心"订阅"（subscribe）这个信号，
+    从而知道什么时候自己可以开始执行。这就叫做"发布/订阅模式"（publish-subscribe pattern），又称"观察者模式"（observer pattern）
+
+    4、Promise
+    当构造promise中的时候内部函数是立即执行的 调用then是执行下一步的结果判断
+    --promise的链式调用
+    每次调用返回的都是一个新的Promise实例(这就是then可用链式调用的原因)
+    如果then中返回的是一个结果的话会把这个结果传递下一次then中的成功回调
+    如果then中出现异常,会走下一个then的失败回调
+    在 then中使用了return，那么 return 的值会被Promise.resolve() 包装(见例1，2)
+    then中可以不传递参数，如果不传递会透到下一个then中(见例3)
+    catch 会捕获到没有捕获的异常
+
+    5、生成器Generators/ yield
+    语法上，首先可以把它理解成，Generator 函数是一个状态机，封装了多个内部状态。
+    Generator 函数除了状态机，还是一个遍历器对象生成函数。
+    可暂停函数, yield可暂停，next方法可启动，每次返回的是yield后的表达式结果。
+    yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。
+
+    function *foo(x) {
+    let y = 2 * (yield (x + 1))
+    let z = yield (y / 3)
+    return (x + y + z)
+    }
+    let it = foo(5)
+    console.log(it.next()) // => {value: 6, done: false}
+    console.log(it.next(12)) // => {value: 8, done: false}
+    console.log(it.next(13)) // => {value: 42, done: true}
+
+    解释如下：
+    首先 Generator 函数调用和普通函数不同，它会返回一个迭代器
+    当执行第一次 next 时，传参会被忽略，并且函数暂停在 yield (x + 1) 处，所以返回 5 + 1 = 6
+    当执行第二次 next 时，传入的参数12就会被当作上一个yield表达式的返回值，如果你不传参，yield 永远返回 undefined。此时 let y = 2 * 12，所以第二个 yield 等于 2 * 12 / 3 = 8
+
+    6、Async/Await简介
+    async/await是基于Promise实现的，它不能用于普通的回调函数。
+    async/await与Promise一样，是非阻塞的。
+    async/await使得异步代码看起来像同步代码，这正是它的魔力所在。
+    注意：如果promise没有一个成功的值传入，对await来说就算是失败了，后面的代码就不会执行;因此，await后面是promise必须有resolve;
+    如果数普通函数得有返回值
+</body>
+
+</html>

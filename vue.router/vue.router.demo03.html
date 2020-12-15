@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-Router重定向</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>Hello Vue !</h2>
+        <p>
+            <router-link to="foo">Jump to FOO</router-link>
+            <router-link to="food">Jump to FOO2</router-link>
+            <router-link to="foods">Jump to FOO2s</router-link>
+            <router-link to="foo6">Jump to FOO6</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <script>
+        /**
+         * redirect 可以是path字符串 也可以是{name: ''} 或 {path: ''}
+         * 也可以是一个方法redirect:(to) => {} // 方法接收 目标路由 作为参数 return 重定向的 字符串路径/路径对象
+         * 
+         * 注意：导航守卫并没有应用在路由的跳转上，而是仅仅应用在器目标上。
+         * 
+         * 别名 alias /a是/b 别名  当访问/b 时 URL会保持为/b  但是路由匹配的是/a  就像访问/a 一样
+         * 如下操作 访问Foo6是  路由是Foo6 但是组件应用的是路径Foo5的
+         * 也是一种映射
+         * 
+         * 加hash和history
+         * hash模式背后的原理是onhashchange事件，可以在window对象上监听这个事件
+         * hash路径改变url会被浏览器记录下来
+         * 
+         * history api可分为两大部分  切换和修改
+         * history.go();history.back();history.forward()
+         * 修改状态包括 pushState，replaceState  都接受stateObj，title，url
+         * 缺点：当刷新的时候，如果服务器这种没有相应的相应或资源，会分分中出现404
+         * 
+        */
+        const Foo1 = {
+            template: `<div>This is one template</div>`
+        };
+        const Foo2 = {
+            template: `<div>This is two template</div>`
+        };
+        const Foo3 = {
+            template: `<div>This is three template</div>`
+        };
+        const Foo4 = {
+            template: `<div>This is four template</div>`
+        };
+        const Foo5 = {
+            template: `<div>This is five template</div>`
+        };
+        const Foo6 = {
+            template: `<div>This is six template</div>`
+        };
+
+        const routes = [
+            {
+                path: '/foo',
+                name: 'foo',
+                redirect: '/bar',
+                component: Foo1 
+            },
+            {
+                path: '/bar',
+                component: Foo3
+            },
+            {
+                path: '/foo3',
+                name: 'foo3',
+                component: Foo4
+            },
+            {
+                path: '/foo4',
+                name: 'foo4',
+                component: Foo2
+            },
+            {
+                path: '/food',
+                redirect: {name: 'foo3'},
+                component: Foo2
+            },
+            {
+                path: '/foods',
+                redirect: {path: '/foo4'},
+                component: Foo2
+            },
+            {
+                path: '/foo5',
+                alias: '/foo6',
+                component: Foo5
+            },
+            {
+                path: '/foo6',
+                component: Foo6
+            }
+        ];
+
+        const router = new VueRouter({
+            mode: 'history',
+            routes
+        })
+
+        let app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+</html>

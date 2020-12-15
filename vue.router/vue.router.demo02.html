@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-Router命名视图</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>Hello Vue !</h2>
+        <p>
+            <router-link to="foo">Jump to FOO</router-link>
+        </p>
+        <router-view ></router-view>
+        <router-view name="a"></router-view>
+        <router-view name="b"></router-view>
+    </div>
+
+    <script>
+        /**
+         * router-view 没有name  默认为default
+         * 在route中  组件为components 不是component
+        */
+        const Foo1 = {
+            template: `<div>This is one template</div>`
+        };
+        const Foo2 = {
+            template: `<div>This is two template</div>`
+        };
+        const Foo3 = {
+            template: `<div>This is three template</div>`
+        };
+
+        const routes = [
+            {
+                path: '/Foo',
+                components: {
+                    default: Foo1,
+                    a: Foo2,
+                    b: Foo3
+                }
+            }
+        ];
+
+        const router = new VueRouter({
+            routes
+        })
+
+        let app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+</html>

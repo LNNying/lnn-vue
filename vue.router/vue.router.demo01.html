@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-Router开篇</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>Hello App!</h1>
+        <button @click="jumpToGame">跳转到游戏</button>
+        <p>
+            <!-- 使用 router-link 组件来导航. -->
+            <!-- 通过传入 `to` 属性指定链接. -->
+            <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+            <router-link :to="{name: 'foo', params:{name: 'lnn'}}">Go to Foo</router-link>
+            <router-link :to="{path: '/bar', query: {age: 12}}">Go to Bar</router-link>
+        </p>
+        <!-- 路由出口 -->
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+    </div>
+
+
+
+    <script>
+        // 0. 如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)
+
+        // 1. 定义 (路由) 组件。
+        // 可以从其他文件 import 进来
+        // :to="{name: 'foo', params:{name: 'lnn'}}" 相当于this.router.push({name: 'foo', params:{name: 'lnn'}})
+        // :to="{path: '/bar', query: {age: 12}}" 相当于this.router.push({path: '/bar', query: {age: 12}}) 但是要看path后面是否有/:id
+        // this.$router.replace({name:'', params: {}}) 与 this.$router.push() 相似 
+        // name ---> params    path ---> query
+
+        const Foo = {
+            computed: {
+                name: function () {
+                    return this.$route.params.name;
+                }
+            },
+            template: `<div>{{this.name}}
+                </div>`
+        }
+        const Bar = {
+            computed: {
+                age() {
+                    return this.$route.query.age;
+                }
+            },
+            template: `<div>bar {{this.age}}
+                <p>
+                    <router-link to="/bar/user">Go Child user</router-link>
+                </p>
+                <router-view></router-view>
+                </div>`
+        }
+
+
+        const User = {
+            template: `
+                <div>This is a bar child User</div>
+            `
+        }
+
+        const Empty = {
+            template: `<div>This is a Empty Path</div>`
+        }
+
+        const Game = {
+            template: `<div>This is a Game template</div>`
+        }
+
+        // 2. 定义路由
+        // 每个路由应该映射一个组件。 其中"component" 可以是
+        // 通过 Vue.extend() 创建的组件构造器，
+        // 或者，只是一个组件配置对象。
+        // 我们晚点再讨论嵌套路由。
+        const routes = [
+            {
+                path: '/foo/:name',
+                name: 'foo',
+                component: Foo
+            },
+            {
+                path: '/bar',
+                component: Bar,
+                children: [{
+                        path: '', // 嵌套路由中 path为空 显示默认组件
+                        component: Empty
+                    },
+                    {
+                        path: 'user', // 以/开头的会当做根路径
+                        component: User
+                    }
+                ]
+            },
+            {
+                path: 'game',
+                component: Game
+            }
+        ]
+
+        // 3. 创建 router 实例，然后传 `routes` 配置
+        // 你还可以传别的配置参数, 不过先这么简单着吧。
+        const router = new VueRouter({
+            routes // (缩写) 相当于 routes: routes
+        })
+
+        let app = new Vue({
+            router,
+            data: {
+                name: '测试'
+            },
+            methods: {
+                jumpToGame() {
+                    this.$router.push('game')
+                }
+            },
+            watch: {
+                $route(to, from) {
+                    console.log(to);
+                    console.log('---------------');
+                    console.log(from);
+                }
+            }
+        }).$mount('#root');
+    </script>
+</body>
+
+</html>
