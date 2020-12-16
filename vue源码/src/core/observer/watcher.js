@@ -25,22 +25,30 @@ let uid = 0
  */
 export default class Watcher {
   vm: Component;
-  expression: string;
-  cb: Function;
+  expression: string; // 关联表达式或渲染方法体
+  cb: Function;       //  // 就是渲染函数(模板或组件的渲染)或计算函数)(watch)
   id: number;
   deep: boolean;
   user: boolean;
-  lazy: boolean;
+  lazy: boolean;  // 计算属性和watch来控制不要让watcher立即执行
   sync: boolean;
   dirty: boolean;
   active: boolean;
+
+              // vue 中使用了二次提交的概念如 虚拟dom同步到另一个虚拟dom中
+              // 每次在数据渲染或计算的时候就就会访问响应式的数据进行依赖收集
+              // 就将关联的watcher与dep关联
+              // 在数据发生改变的时候，根据dep找到相关联的watcher，依次调用update
+              // 执行完成后会清空watcher  只是清空deps newDeps会进行备份
   deps: Array<Dep>;
   newDeps: Array<Dep>;
+
   depIds: SimpleSet;
   newDepIds: SimpleSet;
-  before: ?Function;
-  getter: Function;
-  value: any;
+
+  before: ?Function; // 在定义vue构造函数的时候，传入watch
+  getter: Function;  // 类似于生命周期
+  value: any;        // 如果树渲染函数value无效，如果是计算属性就会有个值，存储在value中
 
   constructor (
     vm: Component,
@@ -50,7 +58,7 @@ export default class Watcher {
     isRenderWatcher?: boolean
   ) {
     this.vm = vm
-    if (isRenderWatcher) {
+    if (isRenderWatcher) { // 如果是渲染函数
       vm._watcher = this
     }
     vm._watchers.push(this)
@@ -72,11 +80,12 @@ export default class Watcher {
     this.newDeps = []
     this.depIds = new Set()
     this.newDepIds = new Set()
+    // 用在调试下
     this.expression = process.env.NODE_ENV !== 'production'
       ? expOrFn.toString()
       : ''
     // parse expression for getter
-    if (typeof expOrFn === 'function') {
+    if (typeof expOrFn === 'function') { // 如果是函数就是渲染函数就是render函数
       this.getter = expOrFn
     } else {
       this.getter = parsePath(expOrFn)
@@ -90,6 +99,8 @@ export default class Watcher {
         )
       }
     }
+
+    // 如果是lazy就什么都不做否则就立即调用getter
     this.value = this.lazy
       ? undefined
       : this.get()
@@ -99,6 +110,7 @@ export default class Watcher {
    * Evaluate the getter, and re-collect dependencies.
    */
   get () {
+    // 帮当前的watcher赋值给全局dep.target
     pushTarget(this)
     let value
     const vm = this.vm
@@ -114,9 +126,13 @@ export default class Watcher {
       // "touch" every property so they are all tracked as
       // dependencies for deep watching
       if (this.deep) {
+        // 递归访问属性  最终进行依赖的收集
         traverse(value)
       }
+
+      // 执行完清楚当前全局watcher
       popTarget()
+      // “清空”关联的dep数据
       this.cleanupDeps()
     }
     return value
@@ -129,8 +145,9 @@ export default class Watcher {
     const id = dep.id
     if (!this.newDepIds.has(id)) {
       this.newDepIds.add(id)
-      this.newDeps.push(dep)
+      this.newDeps.push(dep) // 让watcher关联的dep
       if (!this.depIds.has(id)) {
+        // 让dep关联的watcher
         dep.addSub(this)
       }
     }
@@ -143,12 +160,13 @@ export default class Watcher {
     let i = this.deps.length
     while (i--) {
       const dep = this.deps[i]
+      // 在二次提交中归档就是让就的deps和新newdeps一致
       if (!this.newDepIds.has(dep.id)) {
         dep.removeSub(this)
       }
     }
     let tmp = this.depIds
-    this.depIds = this.newDepIds
+    this.depIds = this.newDepIds // 同步处理
     this.newDepIds = tmp
     this.newDepIds.clear()
     tmp = this.deps
@@ -163,7 +181,7 @@ export default class Watcher {
    */
   update () {
     /* istanbul ignore else */
-    if (this.lazy) {
+    if (this.lazy) { // 主要针对计算属性
       this.dirty = true
     } else if (this.sync) {
       this.run()
@@ -178,8 +196,9 @@ export default class Watcher {
    */
   run () {
     if (this.active) {
-      const value = this.get()
+      const value = this.get() // 要么渲染要么求值
       if (
+        // 不相等 就是watch 中newVal与oldVal  触发cb
         value !== this.value ||
         // Deep watchers and watchers on Object/Arrays should fire even
         // when the value is the same, because the value may

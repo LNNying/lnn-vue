@@ -1,5 +1,5 @@
 /* @flow */
-
+// 任务调度
 import type Watcher from './watcher'
 import config from '../config'
 import { callHook, activateChildComponent } from '../instance/lifecycle'
@@ -14,6 +14,7 @@ import {
 
 export const MAX_UPDATE_COUNT = 100
 
+// 维护了全局丢列也就是watcher队列 简单理解为事件队列
 const queue: Array<Watcher> = []
 const activatedChildren: Array<Component> = []
 let has: { [key: number]: ?true } = {}
