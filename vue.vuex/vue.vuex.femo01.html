@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-vuex 开篇</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@2.0.0"></script>
+</head>
+<body>
+    <!--
+        vuex是专属于vue的状态管理模式
+        采用集中式存储管理应用的所有组件的状态
+        并以相应的规则保证状态以一种可预测的方式发生变化
+        vuex 以利用 Vue.js 的细粒度数据响应机制来进行高效的状态更新。
+        不能直接改变store中数据，唯一途径就是通过显示的commit(mutation)提交。
+        store 注入到vue中的是$store
+        this.$store.commit('mutation方法', '参数') // 触发mutation
+        this.$store.state 获取state中数据
+    -->
+
+    <div id="app">
+        <button @click="addCount">add</button>
+        -
+        <button @click="addCount2">add2</button>
+        {{this.$store.state.count}} - {{this.$store.state.count2}}
+    </div>
+
+    <script>
+        const store =  new Vuex.Store({
+            state: {
+                count: 0,
+                count2: 0
+            },
+            mutations: {
+                addCount(state) {
+                    state.count++
+                },
+                addCount2(state, ps) {
+                    state.count2  = ps
+                }
+            }
+        });
+
+        let app = new Vue({
+            store,
+            data: {
+                value: 0
+            },
+            methods: {
+                addCount() {
+                    this.$store.commit('addCount')
+                },
+                addCount2() {
+                    this.value++
+                    this.$store.commit('addCount2', this.value)
+                }
+            }
+        }).$mount('#app');
+    </script>
+</body>
+</html>

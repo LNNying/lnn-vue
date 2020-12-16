@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 开篇</title>
+</head>
+<body>
+    <!--
+        生命周期
+        创建过程
+        1. beforeCreated  这是vue实例没有创建 data,methods都不能调用 否则报undefined
+        2. created  这时Vue实例已经创建完成.完成双向绑定和响应式等操作 data和methods会挂载到上vue实例上，这时就可调用接口处理数据
+        3. beforeMount 这时vue已经完成模板字符串编辑成dom 也就是根据挂载获取真正dom-> 转化为抽象语法树，在接着AST+data 转化为 -> 虚拟dom
+        4. mounted 创建完成，渲染完成，也就是mountComponent(render)方法调用完成
+
+        运行过程
+        beforeUpdate： 数据方法改变但是页面没有渲染， 也就是getter方法中dep->依赖收集(dep.depend())
+        update:  页面渲染  也就是进行分发派送完成(dep.notity())
+
+        页面销毁
+        beforeDestory: 还没开始销毁，data,methods,指令之类的都在正常运行，这里可以进行绑定事件的销毁
+        destory: 组件销毁完成,data,methods,指令之类不可用
+
+    -->
+</body>
+</html>

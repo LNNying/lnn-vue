@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-Router路由元信息</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{name}}</p>
+        <P>
+            <router-link to="/Foo">Jump to Foo</router-link>
+        </P>
+        <router-view></router-view>
+    </div>
+
+    <script>
+
+        /**
+         * meta 
+         * 首先router中配置每个路由对象为路由记录  而一个路由匹配到所有的路由记录会暴露在$route中的$route.matched数组中  遍历matched检测meta属性
+         * 
+        */
+
+        const User = {
+            template: `<div>This is a test template
+                <router-link to="bar">Jump to Bar</router-link>
+                <router-view></router-view>
+                </div>`
+        };
+        const UserChild = {
+            template: `<div>This is a child test template</div>`
+        };
+        const routes = [
+            {
+                path: '/Foo',
+                component: User,
+                children: [
+                    {
+                        path: '/bar',
+                        meta: {requirseAuth: true},
+                        component: UserChild
+                    }
+                ]
+            }
+        ];
+
+        const router = new VueRouter({
+            mode: 'history',
+            routes
+        });
+
+        router.beforeEach((to, from, next) => {
+            console.log(to);
+        next();
+        })
+
+        const app = new Vue({
+            router,
+            data: {
+                name: 'LNN'
+            }
+        }).$mount('#app');
+    </script>
+</body>
+</html>
