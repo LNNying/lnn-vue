@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            background-color: pink;
+        }
+        .load {
+            width: 150px;
+            height: 150px;
+            border: 3px solid  transparent;
+            border-top-color: rgb(212, 146, 12);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            border-radius: 50% 50%;
+            animation: name 3s linear infinite;
+        }
+        .load::before {
+            content: "";
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            top: 5px;
+            left: 5px;
+            border: 3px solid transparent;
+            border-top-color: turquoise;
+            border-radius: 50% 50%;
+            animation: name 2s linear infinite;
+        }
+        .load::after {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            top: 10px;
+            left: 10px;
+            border: 3px solid transparent;
+            border-top-color: rgb(52, 243, 186);
+            border-radius: 50% 50%;
+            animation: name 1s linear infinite;
+        }
+
+        @keyframes name {
+            from {
+                transform: rotate(0);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="load"></div>
+</body>
+</html>
