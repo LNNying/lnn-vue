@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+    <script type="text/javascript">
+        function printfun() {
+            let iFrame = document.createElement('IFRAME');
+            iFrame.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+            document.body.appendChild(iFrame);
+            let doc = iFrame.contentWindow.document;
+            let content = document.getElementById('img').innerHTML;
+            // console.log(content + css + layoutStyle);
+            doc.write(content);
+            doc.close();
+            iFrame.contentWindow.focus();
+            iFrame.contentWindow.print();
+            document.body.removeChild(iFrame);
+        }
+
+        function getBase64(url){
+        //通过构造函数来创建的 img 实例，在赋予 src 值后就会立刻下载图片，相比 createElement() 创建 <img> 省去了 append()，也就避免了文档冗余和污染
+        var Img = new Image(),
+            dataURL='';
+        Img.src=url;
+        Img.onload=function(){ //要先确保图片完整获取到，这是个异步事件
+            var canvas = document.createElement('canvas'), //创建canvas元素
+                width=Img.width, //确保canvas的尺寸和图片一样
+                height=Img.height;
+            canvas.width=width;
+            canvas.height=height;
+            canvas.getContext('2d').drawImage(Img,0,0,width,height); //将图片绘制到canvas中
+            dataURL=canvas.toDataURL('image/jpeg'); //转换图片为dataURL
+        };
+    }
+    console.log(getBase64("http://192.168.102.115:8088/static/images/avatar.png"));
+    </script>
+</head>
+
+<body>
+    <input type="button" value="打印" onclick="printfun()"><br />
+    下面设置的img图片:
+    <div id="img">
+        <img src="http://192.168.102.115:8088/static/images/avatar.png">
+    </div>
+
+    下面图片是背景图片:
+    <div style="background: url('http://192.168.102.115:8088/static/images/avatar.png'); width: 500px; height: 291px;">
+
+    </div>
+</body>
+
+</html>
