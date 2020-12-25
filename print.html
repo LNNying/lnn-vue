@@ -29,6 +29,35 @@
                 document.body.removeChild(iframe); // 移除
             };
         }
+        /*
+        handleUtil.title = function (title) {
+            title = title || '智能仓储管理系统';
+            window.document.title = title;
+            };
+            handleUtil.printPage = function (id, css, title) {
+            // 设置打印时候的标题
+            handleUtil.title(title);
+            let iFrame = document.createElement('IFRAME');
+            iFrame.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+            document.body.appendChild(iFrame);
+            let doc = iFrame.contentWindow.document;
+            let content = document.getElementById(id).innerHTML;
+            // console.log(content + css + layoutStyle);
+            doc.write(css);
+            doc.write(layoutStyle);
+            doc.write(content);
+            // doc.write(content + css + layoutStyle);
+            doc.close();
+            iFrame.contentWindow.focus();
+            iFrame.onload = function () { //解决图片显示不了的问题
+                iFrame.contentWindow.print();
+                document.body.removeChild(iFrame);
+            };
+            // 重置标题为默认
+            handleUtil.title();
+            };
+        
+        */
     </script>
 </body>
 
