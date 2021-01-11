@@ -261,3 +261,11 @@ shared 公共工具，方法
     6. watcher.js  watcher核心类
   2. watch和computed
   3. 简单的说明一下patch
+  patch方法的思路  为二次提交
+    每次更新数据的时候都会生成新的虚拟dom 通过diff算法进行新旧对比(遍历旧的dom看看在没在新的中，在保留不在删除，在遍历新的dom看看在没在旧的中，在更新旧的，不在加到旧的中--loseEquip) 然后得到更新后的旧的dom，最后同步真的dom
+    运用的方法是面向对象中的分而治之 ，每一个虚拟dom都和页面中dom一一对应
+    我们只需要将vnode与真正dom建立一个更新的关系  vnode和真正dom都可以构成dom树
+    通过递归触发每一个vnode的update，来更新对应真正的dom
+
+面试题与patch思路类似
+不使用JSON.stringify将对象转化为JSON格式的数据 运用了分而治之

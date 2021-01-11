@@ -6,7 +6,7 @@ import { callHook, activateChildComponent } from '../instance/lifecycle'
 
 import {
   warn,
-  nextTick,
+  nextTick, // 简单里为setTimeout  理想为nodeprocess.nextTick但是浏览器不支持  用promise.resolve来代替  浏览器不支持用setTImeOut来模拟
   devtools,
   inBrowser,
   isIE
@@ -19,12 +19,15 @@ const queue: Array<Watcher> = []
 const activatedChildren: Array<Component> = []
 let has: { [key: number]: ?true } = {}
 let circular: { [key: number]: number } = {}
+// 异步触发没有开始   类比setTimout没有执行
 let waiting = false
+// 开始渲染  清空队列执行队列中的render方法
 let flushing = false
 let index = 0
 
 /**
  * Reset the scheduler's state.
+ * 初始化  清空队列
  */
 function resetSchedulerState () {
   index = queue.length = activatedChildren.length = 0
@@ -68,6 +71,7 @@ if (inBrowser && !isIE) {
 
 /**
  * Flush both queues and run the watchers.
+ * 触发的更新算法
  */
 function flushSchedulerQueue () {
   currentFlushTimestamp = getNow()
@@ -185,7 +189,7 @@ export function queueWatcher (watcher: Watcher) {
         flushSchedulerQueue()
         return
       }
-      nextTick(flushSchedulerQueue)
+      nextTick(flushSchedulerQueue) // 让任务队列中的watcher在下一次事件循环中触发
     }
   }
 }
