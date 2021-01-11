@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arrObj = [{
+                id: 1,
+                name: '12',
+                age: 12
+            },
+            {
+                id: 2,
+                name: '21',
+                age: 13
+            },
+            {
+                id: 3,
+                name: '32',
+                age: 14
+            }
+        ];
+        let arr = ['id', 'name'];
+
+        let obj = {};
+
+        function addObject(arr) {
+            return function (obj, arrObj) {
+                if (Array.isArray(arrObj)) {
+                    for (let i = 0; i < arrObj.length; i++) {
+                        let key = '';
+                        for (let j = 0; j < arr.length; j++) {
+                            key += arrObj[i][arr[j]] + ' ';
+                        }
+                        key = key.trim();
+                        obj[key] = arrObj[i];
+                    }
+                } else if (typeof arrObj === 'object') {
+                    let key = ''
+                    for (let i = 0; i < arr.length; i++) {
+                        key += arrObj[arr[i]] + ' ';
+                    }
+                    key = key.trim();
+                    obj[key] = arrObj;
+                } else {
+                    console.warn('参数' + arrObj + '不是对象类型');
+                }
+
+            }
+        }
+
+        let fn = addObject(arr);
+        fn(obj, arrObj);
+        fn(obj, {
+            id: 4,
+            name: '41',
+            age: 41
+        });
+        console.log(obj);
+
+        /**
+         * 处理数组数据
+         * 初始化接收 对象中的key 先接收数组
+         * addObject 参数1：存储数据的对象， 
+         * 
+         * */
+        class HandleObject {
+
+            constructor(key, connector = '') {
+                this.key = key;
+                this.connector = connector;
+            }
+
+            addObject(obj, arrObj) {
+                if (Array.isArray(arrObj)) {
+                    for (let i = 0; i < arrObj.length; i++) {
+                        let key = '';
+                        for (let j = 0; j < this.key.length; j++) {
+                            if (j == this.key.length - 1) {
+                                key += arrObj[i][this.key[j]];
+                            } else {
+                                key += arrObj[i][this.key[j]] + this.connector;
+                            }
+                        }
+                        key = key.trim();
+                        obj[key] = arrObj[i];
+                    }
+                } else if (typeof arrObj === 'object') {
+                    let key = ''
+                    for (let i = 0; i < this.key.length; i++) {
+                        if (i == this.key.length - 1) {
+                            key += arrObj[this.key[i]];
+                        } else {
+                            key += arrObj[this.key[i]] + this.connector;
+                        }
+                    }
+                    key = key.trim();
+                    obj[key] = arrObj;
+                } else {
+                    console.warn('参数' + arrObj + '不是对象类型');
+                }
+            }
+
+            getObject(obj, key) {
+                return obj[key];
+            }
+
+            deleteObject(obj, key) {
+                Reflect.deleteProperty(obj, key);
+            }
+
+        }
+
+        let handleObj = new HandleObject(arr, '/');
+        let hObj = {};
+        handleObj.addObject(hObj, arrObj);
+        handleObj.addObject(hObj, {
+            id: 4,
+            name: '41',
+            age: 41
+        });
+        console.log(hObj);
+    </script>
+</body>
+
+</html>

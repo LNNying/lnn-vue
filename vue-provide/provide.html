@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-Provide</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="clickParent">父类按钮</button>
+        <inject></inject>
+    </div>
+    <script>
+        /**
+         * provide 与 inject 对于一个基本数据类型是不能实现响应式的
+         * 但是 对于一个对象类型是可以实现响应式的
+         * 修改方式是this._provided.age.age 
+         * */
+        let inject = {
+            template: `<button @click="clickBtn">按钮</button>`,
+            inject: ['name', 'age'],
+            methods: {
+                clickBtn() {
+                    console.log(this.name);
+                    console.log(this.age.age);
+                }
+            }
+        }
+        let app = new Vue({
+            el: '#app',
+            components: {inject},
+            provide: function() {
+                return {
+                    name: 'LNN',
+                    age: {
+                        age: 12
+                    }
+                }
+            },
+            methods: {
+                clickParent() {
+                    this._provided.name = 'LNN1';
+                    this._provided.age.age = 132;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
