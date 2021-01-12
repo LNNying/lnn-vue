@@ -16,19 +16,19 @@
          * vue2中不是在data中直接添加的属性是不具有双向绑定(响应式的)
          * 必须通过this.$set(对象, key, value) 的方式手动绑定上
          * 对象不能是 Vue 实例，或者 Vue 实例的根数据对象。如this 也就是不能直接在data上加
-         * 
+         *
          * 数据劫持的优点
          * 1.不需要进行显示调用
          * 2.通过属性劫持可以精确获取变化内容，不需要额外diff算法  减少性能消耗
          * vue2.0就是通过数据劫持+发布订阅式来实现双向绑定的
          * react 则是通过setState来进行显示调用
          * angular 则是通过显示调用 markForCheck
-         * 
+         *
          * vue3.0 通过Proxy全面替换Object.defineProperty() Proxy 是 defineProperty的加强版
          * Proxy可以拦截数组变化 Proxy提供了13种拦截
          * defineProperty 是ES5 中的
          * Proxy是ES6中新增的
-         * 
+         *
          * /
         // 正则表达式  处理插值
         let rkuohao = /\{\{(.+?)\}\}/g;
@@ -39,10 +39,11 @@
         4. 放到页面上
         */
         let root = document.getElementById("app");
-    
+
         let data = {
             message: '信息'
-        }
+        };
+        let rkuohao = /\{\{(.+?)\}\}/g;
         // 3. 将数据与模板结合
         // 使用递归处理
         // 现在要判断template是什么  在这里是dom元素，而在vue源码中为字符串（转化：dom -> 字符串

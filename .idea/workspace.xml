@@ -2,9 +2,276 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69de9b3b-3730-4932-aa69-f746a97a2533" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lnn-practice/lnn-vue-dome01.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lnn/vue.dome01.html" beforeDir="false" afterPath="$PROJECT_DIR$/lnn/vue.dome01.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo01.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo02.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo03.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo04.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo05.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo06.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo07.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo08.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo09.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo10.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo11.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo12.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/lnn/vue.demo15.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/vue.js/looseEqual.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vue/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo01.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo02.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo03.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo04.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo05.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo06.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo07.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo08.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo09.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo11.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo12.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lnn/vue.demo15.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue-provide/inject.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue-provide/provide.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.component/index.demo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.component/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.js/Dep.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.js/Watcher.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.router/lnn.router/vue.router.demo01.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.router/vue.router.demo01.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.router/vue.router.demo02.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.router/vue.router.demo03.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.router/vue.router.demo04.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.router/vue.router.demo05.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.router/vue.router.demo06.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.vuex/vue.vuex.femo01.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue3/info/diff-patchFlag枚举.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue3/info/vue3.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue3/info/vue3diff.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue3/info/事件缓存不跟踪.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue3/info/静态提升.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue3/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vuex/vuex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.common.dev.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.common.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.common.prod.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.esm.browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.esm.browser.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.esm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.runtime.common.dev.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.runtime.common.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.runtime.common.prod.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.runtime.esm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.runtime.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/dist/vue.runtime.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/codeframe.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/codegen/events.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/codegen/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/create-compiler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/directives/bind.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/directives/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/directives/model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/directives/on.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/error-detector.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/helpers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/optimizer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/parser/entity-decoder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/parser/filter-parser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/parser/html-parser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/parser/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/parser/text-parser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/compiler/to-function.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/components/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/components/keep-alive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/global-api/assets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/global-api/extend.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/global-api/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/global-api/mixin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/global-api/use.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/events.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/inject.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/lifecycle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/proxy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/bind-dynamic-keys.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/bind-object-listeners.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/bind-object-props.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/check-keycodes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/render-list.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/render-slot.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/render-static.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/resolve-filter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/resolve-scoped-slots.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render-helpers/resolve-slots.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/render.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/instance/state.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/observer/array.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/observer/dep.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/observer/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/observer/scheduler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/observer/traverse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/observer/watcher.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/util/debug.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/util/env.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/util/error.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/util/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/util/lang.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/util/next-tick.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/util/options.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/util/perf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/util/props.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/create-component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/create-element.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/create-functional-component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/helpers/extract-props.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/helpers/get-first-component-child.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/helpers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/helpers/is-async-placeholder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/helpers/merge-hook.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/helpers/normalize-children.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/helpers/normalize-scoped-slots.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/helpers/resolve-async-component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/helpers/update-listeners.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/modules/directives.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/modules/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/modules/ref.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/patch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/core/vdom/vnode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/directives/html.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/directives/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/directives/model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/directives/text.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/modules/class.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/modules/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/modules/model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/modules/style.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/options.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/compiler/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/entry-compiler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/entry-runtime-with-compiler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/entry-runtime.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/entry-server-basic-renderer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/entry-server-renderer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/class-util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/components/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/components/transition-group.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/components/transition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/directives/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/directives/model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/directives/show.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/modules/attrs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/modules/class.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/modules/dom-props.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/modules/events.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/modules/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/modules/style.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/modules/transition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/node-ops.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/patch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/runtime/transition-util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/compiler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/directives/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/directives/model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/directives/show.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/modules/attrs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/modules/class.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/modules/dom-props.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/modules/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/modules/style.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/server/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/util/attrs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/util/class.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/util/compat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/util/element.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/util/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/web/util/style.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/directives/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/directives/model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/append.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/class.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/props.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/component-root.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/recycle-list.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/text.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/v-bind.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/v-for.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/v-if.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/v-on.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/recycle-list/v-once.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/compiler/modules/style.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/entry-compiler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/entry-framework.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/entry-runtime-factory.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/components/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/components/richtext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/components/transition-group.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/components/transition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/directives/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/modules/attrs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/modules/class.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/modules/events.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/modules/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/modules/style.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/modules/transition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/node-ops.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/patch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/recycle-list/render-component-template.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/recycle-list/virtual-component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/runtime/text-node.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/util/element.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/util/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/platforms/weex/util/parser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/bundle-renderer/create-bundle-renderer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/bundle-renderer/create-bundle-runner.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/bundle-renderer/source-map-support.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/create-basic-renderer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/create-renderer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/optimizing-compiler/codegen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/optimizing-compiler/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/optimizing-compiler/modules.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/optimizing-compiler/optimizer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/optimizing-compiler/runtime-helpers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/render-context.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/render-stream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/render.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/template-renderer/create-async-file-mapper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/template-renderer/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/template-renderer/parse-template.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/template-renderer/template-stream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/webpack-plugin/client.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/webpack-plugin/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/webpack-plugin/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/server/write.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/sfc/parser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/shared/constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/src/shared/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/types/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/types/options.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/types/plugin.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/types/umd.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/types/vnode.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue源码/types/vue.d.ts" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,40 +286,86 @@
     <session id="1669749549">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="3" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="1" />
+          <entry key="html" value="6" />
+          <entry key="js" value="2" />
+          <entry key="md" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="1" />
+          <entry key="HTML" value="6" />
+          <entry key="JavaScript" value="2" />
+          <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="10" />
+          <entry key="html" value="14" />
+          <entry key="js" value="969" />
+          <entry key="md" value="450" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="10" />
+          <entry key="HTML" value="14" />
+          <entry key="JavaScript" value="969" />
+          <entry key="PLAIN_TEXT" value="450" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lnn-practice/lnn-vue-dome01.html">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vue/vue源码/src/shared/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="6308">
+              <caret line="334" column="16" selection-start-line="334" selection-start-column="16" selection-end-line="334" selection-end-column="16" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vue/vue.js/looseEqual.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vue/lnn/vue.demo01.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="56" column="34" lean-forward="true" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vue/lnn/vue.demo02.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-456" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vue/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="209" column="39" selection-start-line="209" selection-start-column="39" selection-end-line="209" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -63,8 +376,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>isObject</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,6 +392,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/lnn-practice/lnn-vue-dome01.html" />
+        <option value="$PROJECT_DIR$/vue/生命周期/readme.md" />
+        <option value="$PROJECT_DIR$/vue/vue.js/looseEqual.js" />
+        <option value="$PROJECT_DIR$/vue/lnn/vue.demo01.html" />
+        <option value="$PROJECT_DIR$/vue/README.md" />
       </list>
     </option>
   </component>
@@ -82,18 +405,22 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/vue/vue源码/package.json" />
+    </packageJsonPaths>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="-58" />
+    <option name="y" value="26" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -105,14 +432,20 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WebstormProjects/iwms-front-web/datang/iwcs_web_front" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\project\other\lnn-vue\vue" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -137,23 +470,22 @@
       <option name="presentableId" value="Default" />
       <updated>1605591918372</updated>
       <workItem from="1605591919559" duration="192000" />
+      <workItem from="1610418302399" duration="3325000" />
+      <workItem from="1610433780784" duration="1986000" />
+      <workItem from="1610436040490" duration="3612000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192000" />
+    <option name="totallyTimeSpent" value="9115000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966975" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -161,6 +493,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32907802" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -177,6 +513,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue/lnn/vue.demo.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue/生命周期/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="57" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue/vue源码/src/shared/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6308">
+          <caret line="334" column="16" selection-start-line="334" selection-start-column="16" selection-end-line="334" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue/vue.js/looseEqual.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue/lnn/vue.demo01.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="56" column="34" lean-forward="true" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue/lnn/vue.demo02.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-456" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="209" column="39" selection-start-line="209" selection-start-column="39" selection-end-line="209" selection-end-column="39" />
         </state>
       </provider>
     </entry>

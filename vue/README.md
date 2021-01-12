@@ -207,6 +207,9 @@ vue中每一个组件都是自治的  所以就会有很多watcher
 
 # Dep与watcher 属性之间操作
 
+watcher 在初始化的时候就把Dep.target = this; 所以在observe中 会有if(Dep.target) {dep.addSub(Dep.target)} 这判断 添加的是watcher
+dep和watcher 在初始化的时候会互相绑定  以便跟踪
+
 看图片
 
 
@@ -256,7 +259,7 @@ shared 公共工具，方法
        2. let _newArr = []
       arr.forEach(item => _set[item] || (_set[item] = true,_newArr.push(item)))
 
-      终极  就是如何去判同  查考vue中loseEqua在shared工具文件中 
+      终极  就是如何去判同  查考vue中loseEqua在shared工具文件中
 
     6. watcher.js  watcher核心类
   2. watch和computed
