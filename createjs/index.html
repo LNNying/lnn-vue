@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>认识CreateJS</title>
+    <!--easeljs-0.7.1.min.js
+    （一个JavaScript库,使使用HTML5 Canvas元素变得容易）
+    -->
+    <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
+    <script>
+        var mycanvas;
+        var stag;
+        var txt;
+        var count=0;
+        window.onload=function(){
+            mycanvas=document.getElementById("mycanvas");
+            stang=new createjs.Stage(mycanvas); //Stage相当于ctx.getcontext("2d")一个承载的舞台
+            txt=new createjs.Text("number->","20px Arial","#ff7700");
+            stang.addChild(txt);
+
+            createjs.Ticker.setFPS(30);
+            createjs.Ticker.addEventListener("tick",tick);
+        }
+
+        function tick(e){
+            count++;
+            txt.text="number->"+count+"!";
+            stang.update();
+        }
+    </script>
+</head>
+<!--本课主要讲解认识createjs-->
+<body>
+     <canvas id="mycanvas" width="500px" height="500px"></canvas>
+</body>
+</html>

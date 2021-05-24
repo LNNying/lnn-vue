@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <canvas id="canvas1" style="position: absolute; left: 0px; top: 0px;" width="1280" height="960">This text is displayed if your browser does not shown.
+        </canvas>
+        <script>
+            $(function () {
+    
+                var ctx = document.getElementById("canvas1").getContext("2d");
+                var imgBasket = new Image();
+                imgBasket.id = "imgBasket";
+                imgBasket.src = "img/q_r1.png";
+                imgBasket.onload = function () {
+                    ctx.drawImage(imgBasket, 580, 260, 200, 200);
+                }
+                
+    
+                //this jquery mobile event not working in canvas
+                $("document").on("click", "#imgBasket", function () {
+                    alert("Hello");
+                });
+            });
+        </script>
+    </body>
+    </html>

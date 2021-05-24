@@ -272,3 +272,9 @@ shared 公共工具，方法
 
 面试题与patch思路类似
 不使用JSON.stringify将对象转化为JSON格式的数据 运用了分而治之
+
+总结
+vue响应式是 通过数据劫持和发布订阅模式构建
+包括  compile 编辑方式 渲染页面  编译过程中构建watcher  并在watcher中将dep.target 复制为当前watcher 完后并复制为null
+      oberive 方法 数据劫持  在get new Dep  并收集dep(就是watcher)
+                            在set中调用dep.update -> 调用当前watcher.update  更新数据

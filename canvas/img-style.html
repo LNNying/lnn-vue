@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片样式</title>
+</head>
+
+<body>
+    <canvas id="canvas" height="500" width="500" style="background-color: rgb(241, 71, 41);"></canvas>
+    <script>
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+
+        var imgBasket = new Image();
+        imgBasket.id = "imgBasket";
+        imgBasket.src = "img/q_r1.png";
+        imgBasket.onload = function () {
+            ctx.drawImage(imgBasket, 100, 260, 200, 200);
+
+            ctx.beginPath();
+            ctx.fillStyle = 'rgba(241, 71, 41,.8)';
+            ctx.arc(200, 360, 100, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.closePath();
+        }
+    </script>
+</body>
+
+</html>

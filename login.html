@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+    <div class="container right-panel-active">
+        <div class="container_from container--signup">
+            <form action="#" class="from" id="from1">
+                <h2 class="from_title">注册</h2>
+                <input type="text" class="input">
+                <input type="text" class="input">
+                <input type="text" class="input">
+                <button class="btn">注册</button>
+            </form>
+        </div>
+
+
+        <div class="container_from container--signin">
+            <form action="#" class="from" id="from2">
+                <h2 class="from_title">登入</h2>
+                <input type="text" class="input">
+                <input type="text" class="input">
+                <input type="text" class="input">
+                <button class="btn">登入</button>
+            </form>
+        </div>
+
+        <div class="container_overlay">
+            <div class="overlay">
+                <div class="overlay_panel overlay--left">
+                    <button class="btn" id="signin">已有账号</button>
+                </div>
+
+                <div class="overlay_panel overlay--right">
+                    <button class="btn" id="signup">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const siginUp = document.getElementById('signup')
+        const siginIn = document.getElementById('signin')
+        const from1 = document.getElementById('from1')
+        const from2 = document.getElementById('from2')
+        const container = document.querySelector('.container')
+
+        siginIn.addEventListener('click', () => {
+            container.classList.remove('right-panel-active')
+        })
+
+        siginUp.addEventListener('click', () => {
+            container.classList.add('right-panel-active')
+        })
+
+        from1.addEventListener('submit', () => e.preventDefault());
+        from2.addEventListener('submit', () => e.preventDefault());
+    </script>
+
+</body>
+</html>

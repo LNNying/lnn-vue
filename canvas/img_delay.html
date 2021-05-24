@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>帧闪烁解决</title>
+        
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            
+            body{
+                text-align: center;
+            }
+            
+            #myCanvas{
+                border: 1px solid ;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <canvas id="myCanvas" width="800" height="400"></canvas>
+        
+        
+        
+        <!-- javascript 代码 、
+            图片加载出现延迟闪烁问题  主要是加载的时候时间过长出现的空白期现象
+        
+        -->
+        <script type="text/javascript">
+            window.onload = function () {
+                var myCanvas = document.getElementById('myCanvas');
+                
+                var painting = myCanvas.getContext('2d');
+                
+                var num = 0;
+                var speed = 0;
+                setInterval(function(){
+                    speed += 20;
+                    if(speed > myCanvas.width){
+                        speed = -150
+                        //                speed = 0
+                    };
+                    
+                    num++;
+                    if(num > 8){
+                        num = 1;
+                    };
+                    
+                    painting.beginPath();
+                    
+                    //1.img对象
+                    var imgNode = new Image();
+                    
+                    //2.img对象 设置 src
+                    imgNode.src = 'img/q_r' + num + '.png';
+                    
+                    //3.等图片加载完成后再去设置图片显示
+                    imgNode.onload = function () {
+                        //4.图片显示在画布上  主要在于 在图片加载完成后清空
+                        painting.clearRect(0, 0, myCanvas.width, myCanvas.height)
+                        painting.drawImage(imgNode, speed, 150, 150, 90);
+                    };
+                }, 340);
+            };
+        </script>
+    </body>
+</html>
+</body>
+</html>

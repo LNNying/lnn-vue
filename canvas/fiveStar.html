@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五角星</title>
+</head>
+
+<body>
+    <canvas id="canvas" height="300" width="300"></canvas>
+    <script>
+        function $$(id) {
+            return document.getElementById(id);
+        }
+
+        function initCanvas() {
+            let canvas = $$('canvas');
+            let ctx = canvas.getContext('2d');
+            drawFiveStar(ctx, 50, 100);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        /**
+         * size 大小
+         * offset 偏移量
+         * */
+
+        function drawFiveStar(ctx, size, offset) {
+            ctx.beginPath()
+            for (let i = 0; i < 5; i++) {
+                ctx.lineTo(Math.cos((18 + i * 72) * Math.PI / 180) * size + offset, -Math.sin((18 + i * 72) * Math.PI / 180) * size + offset);
+                ctx.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * size / 2 + offset, -Math.sin((54 + i * 72) * Math.PI / 180) * size / 2 + offset);
+            }
+            ctx.closePath();
+        }
+        initCanvas();
+    </script>
+</body>
+
+</html>

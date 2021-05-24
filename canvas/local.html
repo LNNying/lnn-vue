@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坐标系</title>
+</head>
+<body>
+    <canvas id="canvas" height="400" width="400" style="background-color: honeydew;border: 1px solid red;"></canvas>
+
+    <script>
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = 'green';
+        ctx.fillRect(150, 150, 100, 100);
+
+        ctx.save();
+        ctx.strokeStyle = '#000';
+        ctx.fillStyle = 'red';
+        ctx.translate(200, 200);
+        ctx.rotate(45*Math.PI/180);
+        ctx.translate(-200, -200);
+        ctx.rect(150, 150, 100, 100);
+        ctx.fill();
+        ctx.stroke();
+        // ctx.resole();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>While</title>
+</head>
+<body>
+    <div id="app">
+        <div>综合</div>
+        <h2>Vue-element</h2>
+        <h3>Element-UI</h3>
+        <h4>Iview-UI</h4>
+        <h5>TS</h5>
+        <h6>JS</h6>
+    </div>
+    <script>
+        let el = document.querySelector('#app');
+
+        let f = document.createDocumentFragment();
+        
+        let firstChild;
+        console.log(el.firstChild);
+        // while(firstChild = el.firstChild) {
+        //     console.log(firstChild);
+        //     f.appendChild(firstChild);
+        // }
+
+        console.log(f);
+        console.log(el);
+    </script>
+</body>
+</html>

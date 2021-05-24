@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正多边形</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        function $$(id) {
+            return document.getElementById(id);
+        }
+
+        function initCanvas() {
+            let canvas = $$('canvas');
+            let ctx = canvas.getContext('2d');
+            createPolygon(ctx, 100, 50, 6, 10);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+        }
+
+        /***
+         * 每个角度 = 180 / n(边数)
+         * dx, dy  中心坐标
+         * n 边数
+         * size 大小
+         * 
+         * */   
+
+        function createPolygon(ctx, dx, dy, n, size) {
+            if (n <= 2) {
+                alert('边数必须大于等于3');
+                return;
+            }
+            ctx.beginPath();
+            let degree = (2 * Math.PI) / n;
+            for (let i = 0; i < n; i++) {
+                let x = Math.cos(i * degree);
+                let y = Math.sin(i * degree);
+                ctx.lineTo(x * size + dx, y * size + dy);
+            }
+            ctx.closePath();
+        }
+
+        initCanvas();
+
+    </script>
+</body>
+</html>

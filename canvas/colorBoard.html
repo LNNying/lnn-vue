@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颜色板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" height="300" width="300" style="border: 1px dotted rgba(241, 142, 142, 0.925);"></canvas>
+    <script>
+        function $$(id) {
+            return document.getElementById(id);
+        }
+
+        function initCanvas() {
+            let canvas = $$('canvas');
+            let ctx = canvas.getContext('2d');
+            drawColorBoard(ctx, 8);
+            ctx.strokeStyle = '#eee';
+            ctx.stroke();
+        }
+        function drawColorBoard(ctx, n) {
+            ctx.beginPath();
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n; j++) {
+                    ctx.fillStyle = "rgb(" + Math.floor(255 - (255 / n) * i) + "," + Math.floor(255 - (255 / n) * j) + ",0)";
+                    ctx.fillRect(i * 25, j * 25, 25, 25);
+                }
+            }
+            ctx.closePath();
+        }
+        initCanvas();
+    </script>
+</body>
+
+</html>
