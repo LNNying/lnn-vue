@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy-OwnKeys</title>
+</head>
+<body>
+<script>
+    /**
+     * 获取对象的keys 键值
+     * 必须返回可枚举的数组
+     *
+     * 触发方式
+     * Object.getOwnPropertyNames  // 返回键名
+     * Object.getOwnPropertySymbols  // 返回键类型为Symbol
+     * Object.keys // 返回键
+     * Reflect.ownKeys
+     */
+
+    let handle = {
+        ownKeys: function(target) {
+            return Reflect.ownKeys(target);
+            // return ['1', '2', '3']
+        }
+    };
+
+    let proxy = new Proxy({
+        a: 1,
+        b: 2,
+        c: 3
+    }, handle);
+
+    console.log(Object.getOwnPropertyNames(proxy));
+</script>
+</body>
+</html>

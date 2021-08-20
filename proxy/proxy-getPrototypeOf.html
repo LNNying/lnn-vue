@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy-getPrototypeOf</title>
+</head>
+<body>
+<script>
+    /**
+     * proxy.getPropertyOf 是一个钩子 当读取代理对象原型时触发
+     *
+     * 必须返回一个对象或undefined
+     *
+     * 触发方式
+     * Object.getPrototypeOf
+     * Reflect.getPrototypeOf
+     * __proto__
+     * Object.prototype.isPropertyOf()
+     * instanceof
+     */
+
+    let value = {
+        b: 3
+    };
+
+    let handle = {
+        getPrototypeOf: function(target) {
+            console.log(target);
+            return value;
+            // return Reflect.getPrototypeOf(target);
+        }
+    };
+
+    let p = new Proxy({
+        a: 1
+    }, handle);
+
+    console.log(Object.getPrototypeOf(p));
+
+</script>
+</body>
+</html>

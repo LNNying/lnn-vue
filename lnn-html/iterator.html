@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iterator</title>
+</head>
+<body>
+<script>
+
+    let obj = {
+        a: 1,
+        b: 2,
+        c: 3
+    };
+
+    Object.prototype[Symbol.iterator] = iterator;
+
+
+    function iterator() {
+        let _this = this;
+        let index = 0;
+        let keys = Object.keys(_this);
+
+        return {
+            next() {
+                return index < keys.length ?
+                    {value: _this[keys[index ++]], done: false} :
+                    {value: undefined, done: true}
+            }
+        }
+    }
+
+    for (let item of obj) {
+        console.log(item);
+    }
+
+</script>
+</body>
+</html>

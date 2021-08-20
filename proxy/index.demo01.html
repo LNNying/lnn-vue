@@ -24,7 +24,7 @@
         }
         // 如果属性值是字符串，Proxy的对象应该是原对象
         // 传递两个参数，一个是object, 一个是proxy的handler
-        // 如果是不是嵌套的object，直接加上proxy返回，如果是嵌套的object，那么进入addSubProxy进行递归。 
+        // 如果是不是嵌套的object，直接加上proxy返回，如果是嵌套的object，那么进入addSubProxy进行递归。
         function toDeepProxy(object, handler) {
             if (!isPureObject(object)) {
                 addSubProxy(object, handler);
@@ -81,7 +81,7 @@
         }
 
         let data = toDeepProxy(obj, handle);
-
+        console.log(data.name);
     </script>
 </body>
 

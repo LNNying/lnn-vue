@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy-Construct</title>
+</head>
+<body>
+<script>
+    /**
+     * construct  必须有一个对象返回值
+     * 用于拦截new操作符，为了使new操作符在生成的 Proxy对象上生效，用于初始化代理的目标对象自身必须具有construct属性
+     * 一般是构造函数
+     * target 代理对象
+     * arg 参数
+     * newTarget： 通过代理对象new出来的对象  再次为p
+     *
+     * 触发：
+     * new proxy();
+     * Reflect.construct()
+     */
+
+    function Mnd(name) {
+        this.name = name;
+    }
+
+    let handle = {
+        construct: function(target, arg, newTarget) {
+            console.log(target);
+            console.log(arg);
+            console.log(newTarget);
+            return Reflect.construct(target, arg, newTarget);
+        }
+    };
+
+    let proxy = new Proxy(Mnd, handle);
+
+    let p = new proxy('LNN');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy-DefineProperty</title>
+</head>
+<body>
+<script>
+    /**
+     * Proxy.defineProperty
+     * 用于拦截 Object.defineProperty
+     * 触发方式
+     * Object.defineProperty
+     * Reflect.defineProperty
+     * 必须返回一个Boolean  表示操作成功
+     *
+     * 描述符
+     * enumerable：是否可枚举 扩展
+     * configurable：是否可操作 删除
+     * writable：是否可编辑
+     * value：值
+     * set(newVal)：设置值
+     * get：得到值
+     *
+     * 参数
+     * target 代理对象
+     * prop key
+     * desc 描述符
+     */
+
+    let handle = {
+        defineProperty: function(target, prop, desc) {
+            console.log(target);
+            console.log(prop);
+            console.log(desc);
+            return Reflect.defineProperty(target, prop, desc);
+        }
+    };
+
+    let proxy = new Proxy({}, handle);
+
+    Object.defineProperty(proxy, 'key', {
+        value: 1
+    })
+</script>
+</body>
+</html>

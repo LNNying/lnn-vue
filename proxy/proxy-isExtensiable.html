@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy-isExtensiable</title>
+</head>
+<body>
+<script>
+    /**
+     * 用于拦截Object.isExtensiable  是否可扩展
+     * 参数
+     * target：代理对象
+     * 必须返回true 或为true的值 返回false等报错
+     */
+
+    let handle = {
+        isExtensible: function (target) {
+            return Reflect.isExtensible(target);
+        }
+    };
+
+    let proxy = new Proxy({
+        a: 1,
+    }, handle);
+
+    console.log(Object.isExtensible(proxy));
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gojs</title>
+</head>
+
+<body>
+    <p>去除水印 搜索canvas 找到createElement 删除 ,c=Sa("7ca11abfd022028846");b[c]=Sa("398c3597c01238");for(var
+        d=["5da73c80a36455d5038e4972187c3cae51fd22",ra.Dx+"4ae6247590da4bb21c324ba3a84e385776",rd.xF+"fb236cdfda5de14c134ba1a95a2d4c7cc6f93c1387",L.za],e=1;5>e;e++)b[Sa("7ca11abfd7330390")](Sa(d[e-1]),10,15*e);
+        b[c]=Sa("39f046ebb36e4b");for(c=1;5>c;c++)b[Sa("7ca11abfd7330390")](Sa(d[c-1]),10,15*c);if(4!==d.length||"5"!==d[0][0]||"7"!==d[3][0])rd.prototype.Gd=rd.prototype.ay
+    </p>
+    <div id="myDiagramDiv" style="width: 200px;height: 200px">
+    </div>
+    <div id="diagarm" style="width: 200px;height: 200px;background-color: salmon;"></div>
+    <script src="js/go.js"></script>
+    <script>
+        // 创建图
+        let diagram = new go.Diagram('myDiagramDiv', {
+            // 在加载新模型之前不要初始化某些属性
+            // "InitialLayoutCompleted": loadDiagramProperties, // 这是一个监听方法
+
+            // 让鼠标滚轮事件放大和缩小，而不是上下滚动
+            // "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom,
+
+            // 为通过单击创建的每个新节点指定要复制的数据对象
+            // "clickCreatingTool.archetypeNodeData": {
+            //     text: "new node"
+            // }
+        });
+        function loadDiagramProperties(e) {}
+        // 创建节点 节点中元素的排列方式是 Panel.Auto
+        let node = new go.Node(go.Panel.Auto);
+        // 创建图形
+        let shape = new go.Shape();
+        // 定义图形属性
+        shape.figure = 'RoundedRectangle';
+        shape.fill = 'lightblue';
+        // 将入刑加到节点上
+        node.add(shape);
+        // 创建一个文本
+        let textblock = new go.TextBlock();
+        // 定义文本属性
+        textblock.text = 'Hello!';
+        textblock.margin = 5;
+        // 文本添加到节点
+        node.add(textblock);
+        // 将节点加到图
+        diagram.add(node);
+
+        let diagram2 = new go.Diagram('diagarm');
+        let $ = go.GraphObject.make;
+        diagram2.add(
+            $(go.Node, go.Panel.Auto,
+                $(go.Shape, {
+                    figure: 'RoundedRectangle',
+                    fill: 'lightblue'
+                }),
+                $(go.TextBlock, {
+                    text: 'Hello World',
+                    margin: 2
+                }))
+        );
+
+        // Brush  渐变色
+        diagram.add(
+            $(go.Node, "Auto",
+                $(go.Shape, "RoundedRectangle", {
+                    fill: $(go.Brush, "Linear", {
+                        0.0: "Violet",
+                        1.0: "Lavender"
+                    })
+                }),
+                $(go.TextBlock, "Hello!", {
+                    margin: 5
+                })
+            ));
+    </script>
+</body>
+
+</html>

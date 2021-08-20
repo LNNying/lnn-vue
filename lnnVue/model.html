@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟v-model</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <input v-model="name" placeholder="姓名">
+        <input v-model="age" placeholder="年龄">
+        <input v-model="email" placeholder="邮箱">
+        <input v-model="phone" placeholder="手机号">
+    </div>
+    <div>
+        <p>姓名：<span>{{ name }}</span></p>
+        <p>年龄：<span>{{ age }}</span></p>
+        <p>邮箱：<span>{{ email }}</span></p>
+        <p>手机号：<span>{{ phone }}</span></p>
+    </div>
+</div>
+<script type="module">
+    import Mvvm from './js/Mvvm.js';
+
+    let app = new Mvvm({
+        el: '#app',
+        data: {
+            name: '',
+            age: '',
+            phone: '',
+            email: ''
+        }
+    })
+</script>
+</body>
+</html>

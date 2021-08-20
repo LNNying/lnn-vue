@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy-Has</title>
+</head>
+<body>
+<script>
+    /**
+     * 针对 in 操作符的拦截（是否存在）  与for...in... 区分（遍历）
+     *
+     * 参数
+     * target：代理对象
+     * key：键
+     *
+     * 返回Boolean值
+     */
+
+    let handle = {
+        has: function (target, key) {
+            if (key.startsWith('_')) {
+                console.log('私有属性');
+                return false;
+            }
+            return Reflect.has(target, key);
+        }
+    };
+
+    let obj = {
+        a: 1,
+        b: 2,
+        c: 3,
+        _d: 4
+    };
+
+    let proxy = new Proxy(obj, handle);
+    console.log('_d' in proxy);
+
+</script>
+</body>
+</html>

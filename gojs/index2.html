@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node模板+Binding 变量</title>
+</head>
+
+<body>
+    <div id="diagram" style="width: 500px;height: 500px;"></div>
+    <script src="js/go.js"></script>
+    <script>
+        let dragram = new go.Diagram('diagram');
+        let $ = go.GraphObject.make;
+        dragram.nodeTemplate = $(go.Node, 'Auto', {
+                background: "#44CCFF", // 背景
+                resizable: true,
+                resizeObjectName: "SHAPE", // 重置框框
+                rotatable: true,
+                rotateObjectName: "SHAPE" // 旋转
+            },
+            $(go.Shape, {
+                    figure: "Rectangle",
+                    fill: "white"
+                },
+                new go.Binding('fill', 'myFill')),
+            $(go.TextBlock, {
+                    margin: 5
+                },
+                new go.Binding('text', 'myText')));
+
+        dragram.linkTemplate =
+            $(go.Link,
+                $(go.Shape), // this is the link shape (the line)
+                $(go.Shape, {
+                    toArrow: "Standard"
+                }), // this is an arrowhead
+                $(go.TextBlock, // this is a Link label
+                { segmentOffset: new go.Point(0, -10) },
+                    new go.Binding("text"))
+            );
+        let nodeDataArray = [{
+                key: 'Alpha',
+                myText: 'Hello'
+            },
+            {
+                key: 'Beta',
+                myFill: 'green',
+                myText: 'World'
+            }
+        ];
+        let linkDataArray = [{
+            from: 'Alpha',
+            to: 'Beta',
+            text: '1231231'
+        }];
+        dragram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+        // 获取的所有Nodes和Group的迭代器  同理 dragram.liks  获取所有边的迭代器
+        for (var it = dragram.nodes; it.next();) {
+            var node = it.value;
+            console.log(node);
+        }
+        /**
+         * diagram.model.toJSON()  获取原始数据
+         * go.Model.fromJson 相应字符串转化成JSON
+         * 
+         * diagram.model.findNodeDataForKey  通过key获取指定的node
+         * diagram.findNodeForKey('Alpha').data === diagram.model.findNodeDataForKey('Alpha')
+         * diagram.model.findLinkDataForKey  获取边
+         * 
+         * diagram.selection  返回所选中数据
+         * diagram.selection.size  返回选中个数
+         * diagram.selection.first() 返回选中第一个
+         * 
+         * diagram.model.setDataProperty(data, 'myFill', 'purple');  修改属性
+         * 
+         * diagram.select(node);  // 选中某个节点
+         * diagram.model.addNodeData(node);  添加节点
+         * diagram.model.addLinkData({from:'Alpha', to: 'addNode'});  添加边关系 
+         * diagram.model.removeNodeData(node);  删除节点
+         * 
+         */
+        console.log(dragram.model.findNodeDataForKey('Alpha')); // 这是获取真实数据
+        console.log(dragram.findNodeForKey('Alpha')); // 获取是node的所有节点属性
+    </script>
+</body>
+
+</html>

@@ -120,6 +120,25 @@
         //         return res;
         //     }
         // }
+        /**
+         * 函数柯里化 就是利用闭包的特性
+         * 作用
+         * 参数复用  就是闭包的原理 （OA）
+         * 提前确认  常用来对浏览器的兼容性作出一些判断并初始化api ru
+         * let on = (function () {
+         *     if (document.addEventListener) {
+         *         return function(el, event, handel) {
+         *             el.addEventListener(event, handel, false);
+         *         }
+         *     } else {
+         *         return function(el, event, handel) {
+         *             el.attachEvent('on' + event, handel);
+         *         }
+         *     }
+         * })();
+         * 延迟运行  bind就是利用其特点
+         *
+         * */
     </script>
 </body>
 

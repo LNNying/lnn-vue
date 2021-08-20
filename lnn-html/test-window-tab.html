@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #test-num {
+        font-size: 30px;
+        font-weight: bold;
+    }
+</style>
+<body>
+<div id="test-num">0</div>
+<script>
+    setInterval(() => {
+        let dom = document.querySelector('#test-num');
+        let value = Number(dom.textContent);
+        dom.innerText = value + 1;
+    }, 1000)
+</script>
+</body>
+</html>

@@ -8,7 +8,7 @@
 <body>
     <script>
         let data = {
-    
+
             class: [{name: '山歌'}],
             name: {
                 age: [12,13]
@@ -30,16 +30,16 @@
                 // 如果是数组，循环数组，将数组中的数据进行递归响应式化
                 // 所以递归算法写在了defineReacive方法中
                 // 考虑数组的响应式化 push或pop等方法
-               
+
                 if (Array.isArray(value)) {
-                    // 数组 最外层不是响应式的  
+                    // 数组 最外层不是响应式的
                     for (let j = 0; j < value.length; j++) {
                         if (Array.isArray(value[j]) || typeof value[j] === 'object') {
                             reactify(value[j]);
                         } else {
                             defineReacive(data, key, value, true);
                         }
-                    } 
+                    }
 
                 } else {
                     // 对象或值类型
@@ -68,6 +68,7 @@
             })
         }
         reactify(data);
+        console.log(data);
     </script>
 </body>
 </html>

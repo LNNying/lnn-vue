@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本</title>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+</head>
+<body>
+<div id="diagram" style="width: 550px;height: 550px;outline: none"></div>
+<script src="../js/go.js"></script>
+<script>
+    let diagram = new go.Diagram('diagram');
+    let $ = go.GraphObject.make;
+
+    diagram.add(
+        $(go.Node, 'Auto',
+            $(go.Shape, {
+                fill: 'lightgreen'
+            }),
+            $(go.Panel, 'Horizontal',{
+                margin: 8
+            }),
+            $(go.TextBlock, {
+                text: '\uf030', font: '10pt FontAwesome'
+            }),
+            $(go.TextBlock, {
+                text: 'an example using FontAwesome',
+                margin: new go.Margin(0, 0, 0, 2)
+            }))
+    )
+
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show/v-if</title>
+</head>
+<style>
+    .wrap-box {
+        width: 800px;
+        height: 200px;
+        display: flex;
+    }
+
+    .box {
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .box1 {
+        background-color: #6fff84;
+    }
+    .box2 {
+        background-color: #ff915a;
+    }
+    .box3 {
+        background-color: #0aad8a;
+    }
+    .box4 {
+        background-color: #e22bff;
+    }
+
+    .text1 {
+        color: #ffffff;
+    }
+
+</style>
+<body>
+    <div id="app">
+        <div class="wrap-box">
+            <div class="box box1" v-if="showBox1">showBox1
+                <div class="text1" v-show="showText1">showText</div>
+            </div>
+            <div class="box box2" v-show="showBox2">showBox2</div>
+            <div class="box box3" v-if="showBox3">showBox3</div>
+            <div class="box box4" v-show="showBox4">showBox4</div>
+        </div>
+        <div>
+            <button @click="clickBox1">box1</button>
+            <button @click="clickBox2">box2</button>
+            <button @click="clickBox3">box3</button>
+            <button @click="clickBox4">box4</button>
+            <button @click="clickBox5">box5</button>
+        </div>
+    </div>
+<script type="module">
+    /***
+     * 模拟v-show与v-if  主要是通过操作dom来实现
+     * 1. 实现数据响应式 挂载到this上
+     * 2. 实现初始化dom  拿到v-show、v-if、@click属性
+     * 3. 绑定事件
+     * 4. 实现数据更新视图
+     *
+     *
+     * 问题 对于自己定义的数据接口遗忘
+     */
+    import LYVue from './js/show-js.js';
+    let app = new LYVue({
+        el: '#app',
+        data: {
+            showBox1: false,
+            showBox2: false,
+            showBox3: false,
+            showBox4: false,
+            showText1: false
+        },
+        methods: {
+            clickBox1() {
+                console.log('点击Box1');
+                this.showBox1 = !this.showBox1;
+            },
+            clickBox2() {
+                console.log('点击Box2');
+                this.showBox2 = !this.showBox2;
+            },
+            clickBox3() {
+                console.log('点击Box3');
+                this.showBox3 = !this.showBox3;
+            },
+            clickBox4() {
+                console.log('点击Box4');
+                this.showBox4 = !this.showBox4;
+            },
+            clickBox5() {
+                console.log('点击Box5');
+                this.showText1 = !this.showText1;
+            }
+        }
+    })
+</script>
+</body>
+</html>

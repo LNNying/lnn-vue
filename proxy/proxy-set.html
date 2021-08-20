@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy-Set</title>
+</head>
+<body>
+<script>
+    /**
+     * set 设置值
+     * 参数
+     * target：代理对象
+     * key：键名
+     * newVal：新值
+     * proxy：最初被调用的对象。通常是 proxy 本身，但 handler 的 set 方法也有可能在原型链上，或以其他方式被间接地调用（因此不一定是 proxy 本身）。
+     *
+     * 约束
+     * 若目标属性是一个不可写及不可配置的数据属性，则不能改变它的值。
+     * 如果目标属性没有配置存储方法，即 [[Set]] 属性的是 undefined，则不能设置它的值。
+     * 在严格模式下，如果 set() 方法返回 false，那么也会抛出一个 TypeError 异常。
+     */
+
+    let handle = {
+        set: function (target, key, newVal, proxy) {
+            console.log('设置数据');
+            return Reflect.set(target, key, newVal, proxy);
+        }
+    };
+
+    let proxy = new Proxy({
+        a: 1,
+        b: 2,
+        c: 3
+    }, handle);
+
+    console.log(proxy.a = 4);
+</script>
+</body>
+</html>

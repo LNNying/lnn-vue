@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>proxy-preventExtensions</title>
+</head>
+<body>
+<script>
+    /**
+     * 用于拦截Object.preventExtensions  禁止对象可扩展
+     * 返回一个Boolean值
+     *
+     * 触发方式
+     * Object.preventExtensions
+     * Reflect.preventExtensions
+     *
+     * 约束
+     * 如果目标对象是可扩展的，那么只能返回 false
+     */
+
+    let handle = {
+        preventExtensions: function (target) {
+            return Reflect.preventExtensions(target);
+        }
+    };
+
+    let proxy = new Proxy({
+        a: 1,
+        b: 2,
+        c: 3
+    }, handle);
+
+    console.log(Object.preventExtensions(proxy));
+</script>
+</body>
+</html>
