@@ -1,5 +1,5 @@
 /**
- * no的读取文件也有异步和童虎
+ * node读取文件也有异步和童虎
  */
 const fs = require('fs');
 const { StringDecoder } = require('string_decoder');
@@ -11,7 +11,7 @@ const { StringDecoder } = require('string_decoder');
  * 路径
  * 打开方式  默认以r（读的形式打开）
  * model 一般不用
- * 返回在内存中的标识  打开的第几个窗口 
+ * 返回在内存中的标识  打开的第几个窗口
  */
 
 let fd = fs.openSync('./file/file1.txt', 'r');
@@ -27,7 +27,7 @@ console.log(fd);
  * buffer写入的偏移量
  * 读取指定长度字节
  * 开始读取的位置
- * 用Buffer.alloc 替代Buffer 
+ * 用Buffer.alloc 替代Buffer
  */
 
 let buffer = new Buffer.alloc(8);
@@ -71,7 +71,7 @@ fs.readFile('./file/file1.txt', {flag: 'r', encoding: 'utf-8'}, function(err, da
  * 配置
  * flag: 'w' 写入的模式 w覆盖写入  a追加写入
  * encoding 编码
- * 回调函数 err 
+ * 回调函数 err
  */
 fs.writeFile('./file/file2.txt', '写入', {flag:'w', encoding: 'utf-8'}, function(err) {
     if (err) {
@@ -95,7 +95,7 @@ fs.unlink('./file/file2.txt', function() {
 
 /**
  * Buffer 以16进制显示2进制数据
- * 
+ *
  * 解决问题
  * 1、解决数组不能进行二进制数据操作
  * 2、js数组不想Java等语言效率高

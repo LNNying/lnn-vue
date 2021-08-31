@@ -11,9 +11,6 @@ http.createServer((req, res) => {
     console.log(req);
     res.writeHead(200,{'Content-Type': 'text/plain'});
     res.end('Hello World\n');
-}).listen(8888);
+}).listen(8081);
 
-console.log('Server running at http://127.0.0.1:8888/');
-
-let a = require('./index');
-console.log(a);
+console.log('Server running at http://localhost:8081/');
