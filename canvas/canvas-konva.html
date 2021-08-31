@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas-konva</title>
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+</style>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    let x = 10;
+    let y = 10;
+
+    let canvas = document.querySelector('#canvas');
+    canvas.width = w;
+    canvas.height = h;
+
+    let ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    ctx.fillStyle = 'red';
+    ctx.strokeStyle = '#000';
+    ctx.fillRect(10, 10, 10, 10);
+    ctx.closePath();
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.fillStyle = 'red';
+        ctx.strokeStyle = '#000';
+        ctx.fillRect(x, y, 10, 10);
+        ctx.closePath();
+    }
+
+    setInterval(() => {
+        x += 5;
+        y += 2;
+        draw();
+    }, 1000)
+</script>
+</body>
+</html>

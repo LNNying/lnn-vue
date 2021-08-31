@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Konva</title>
+    <script src="https://unpkg.com/konva@4.0.0/konva.min.js"></script>
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .konva {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body>
+<div class="konva" id="container"></div>
+<script>
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const w_width = 50;
+    const h_height = 50;
+
+    let stage = new Konva.Stage({
+        container: 'container',
+        width: width,
+        height: height,
+        draggable: true
+    });
+
+    let layer = new Konva.Layer();
+
+    stage.add(layer);
+
+    let rect = new Konva.Rect({
+        x: width / 2 - w_width / 2,
+        y: height / 2 - h_height / 2,
+        width: w_width,
+        height: h_height,
+        rotation: 0,
+        fill: '#ff7330',
+        stroke: '#fff',
+        offset: {
+            x: w_width / 2,
+            y: h_height / 2
+        }
+    });
+
+    layer.add(rect);
+
+    layer.draw();
+
+    let rotation = 0;
+
+    setInterval(() => {
+        rotation += 10;
+        let tween = new Konva.Tween({
+            node: rect,
+            easing: Konva.Easings.Linear,
+            duration: 1,
+            rotation: rotation,
+            onFinish: function () {
+                tween.destroy();
+            }
+        });
+        tween.play();
+    }, 1000);
+
+</script>
+</body>
+</html>
