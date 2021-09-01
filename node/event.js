@@ -1,5 +1,5 @@
 /**
- * node 事件驱动 
+ * node 事件驱动
  * 订阅事件 一个事件 处理不同的逻辑
  * 分离有循序的执行接下来的方法
  */
@@ -21,19 +21,40 @@ let eventPool = {
             })
         }
     },
-    delete: function() {}
-}
+    remove: function(eventName, event) {
+        const events = this.pool[eventName];
+        if (events) {
+            events.forEach((item, index) => {
+                if (item === event) {
+                    events.splice(index, 1);
+                }
+            })
+        }
+    }
+};
 
-const events = require('events');
+/**
+ * 引入事件模块
+ * on 注册事件
+ * emit 触发事件
+ * off \ removeListener 移除注册事件 参数 事件名 事件注册和移除时应该是定义在外面的表达式形式的(应该判断的是函数的地址值)
+ */
+const EventEmitter = require('events');
 // 创建事件对象
-const emitEvent = events.EventEmitter();
+const emitEvent = new EventEmitter();
+const doing = function() {
+    console.log(1)
+};
 
+emitEvent.on('hello', doing);
 emitEvent.on('hello', function() {
-    console.log(232)
+    console.log(2)
 });
 emitEvent.on('hello', function() {
-    console.log(2332)
+    console.log(3)
 });
-emitEvent.on('hello', function() {
-    console.log(2332)
-});
+
+emitEvent.removeListener('hello', doing);
+emitEvent.emit('hello');
+console.log(emitEvent);
+

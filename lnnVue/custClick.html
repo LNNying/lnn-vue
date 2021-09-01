@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟vue时间的点击</title>
+</head>
+<body>
+<div id="app">
+    <p>{{ count }}</p>
+    <button @click="addNum">增加</button>
+    <button @click="clearNum">重置</button>
+</div>
+<script type="module">
+    import Nyvue from './js/custClick.js';
+
+    let app = new Nyvue({
+        el: '#app',
+        data: {
+            count: 0
+        },
+        methods: {
+            addNum() {
+                this.count += 1;
+            },
+            clearNum() {
+                this.count = 0;
+            }
+        }
+    })
+</script>
+</body>
+</html>
